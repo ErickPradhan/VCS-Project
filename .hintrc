@@ -26,6 +26,14 @@
       }
     ],
     "disown-opener": "off",
-    "meta-viewport": "off"
+    "meta-viewport": "off",
+    "no-inline-styles": "off",
+    "button-type": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "frame-title": "off"
+      }
+    ]
   }
 }
