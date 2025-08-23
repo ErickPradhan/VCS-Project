@@ -113,6 +113,7 @@
           <a href="#" class="nav-link">Blog</a>
           <a href="#" class="nav-link">About Us</a>
           <a href="#" class="nav-link">Contact Us</a>
+          <a href="appointment.html" class="nav-link">Appointments</a>
         </nav>
 
         <!-- Right side elements -->
@@ -127,7 +128,7 @@
           
           <!-- Search -->
           <div class="hidden md:block relative">
-            <input type="text" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <input type="text" id="desktop-search" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
           </div>
           
@@ -151,7 +152,7 @@
             <option class="text-gray-800">Select Location</option>
           </select>
           <div class="relative flex-1">
-            <input type="text" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <input type="text" id="mobile-search" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
           </div>
         </div>
@@ -170,6 +171,7 @@
         <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Blog</a>
         <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">About Us</a>
         <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="appointment.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Appointments</a>
       </div>
     </div>
   </header>
@@ -186,9 +188,9 @@
   </div>
 
   <!-- Services Section -->
-  <section class="py-10 text-center">
+  <section class="py-10 text-center" id="services-section">
     <h2 class="text-2xl font-bold mb-6">Our Services</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto" id="service-grid">
       <!-- Plumbing -->
       <div class="flex flex-col items-center cursor-pointer service-card" data-service="plumbing">
         <div class="w-16 h-16 border rounded mb-2 bg-blue-100 flex items-center justify-center">
@@ -285,7 +287,7 @@
         <!-- Carousel Container -->
         <div id="featured-carousel" class="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-2">
           <!-- Featured Service 1 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-blue-100 flex items-center justify-center">
               <video src="plumber.mp4" autoplay muted loop></video>
             </div>
@@ -306,7 +308,7 @@
           </div>
           
           <!-- Featured Service 2 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-yellow-100 flex items-center justify-center">
                 <video src="Electrician.mp4" autoplay muted loop></video>
             </div>
@@ -327,7 +329,7 @@
           </div>
           
           <!-- Featured Service 3 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-green-100 flex items-center justify-center">
                 <video src="tutor.mp4" autoplay muted loop></video>
             </div>
@@ -348,7 +350,7 @@
           </div>
           
           <!-- Featured Service 4 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-purple-100 flex items-center justify-center">
                 <video src="home cleaning.mp4" autoplay muted loop></video>
             </div>
@@ -369,7 +371,7 @@
           </div>
           
           <!-- Featured Service 5 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-red-100 flex items-center justify-center">
                 <video src="car repair.mp4" autoplay muted loop></video>
             </div>
@@ -390,7 +392,7 @@
           </div>
           
           <!-- Featured Service 6 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-pink-100 flex items-center justify-center">
                 <video src="pet care.mp4" autoplay muted loop></video>
             </div>
@@ -411,7 +413,7 @@
           </div>
           
           <!-- Featured Service 7 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-indigo-100 flex items-center justify-center">
                 <video src="IT technician.mp4" autoplay muted loop></video>
             </div>
@@ -432,7 +434,7 @@
           </div>
           
           <!-- Featured Service 8 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
             <div class="h-48 bg-teal-100 flex items-center justify-center">
                 <video src="medical.mp4" autoplay muted loop></video>
             </div>
@@ -519,6 +521,17 @@
               <option value="17:00">05:00 PM</option>
             </select>
           </div>
+
+          <div>
+            <label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+            <select id="duration" required class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select duration</option>
+              <option value="1 hour">1 hour</option>
+              <option value="2 hours">2 hours</option>
+              <option value="3 hours">3 hours</option>
+              <option value="4+ hours">4+ hours (please specify in notes)</option>
+            </select>
+          </div>
           
           <div>
             <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
@@ -591,6 +604,7 @@
             <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
             <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
             <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="appointment.html" class="text-gray-300 hover:text-white transition-colors">Appointments</a></li>
           </ul>
         </div>
         
@@ -657,13 +671,13 @@
             title: "Faucet Installation",
             description: "Professional installation of new faucets in kitchen and bathrooms.",
             price: "₹500 - ₹1500",
-            Image: "fauct repair.jpg"
+            image: "fauct repair.jpg"
           },
           {
             id: "drain-cleaning",
             title: "Drain Cleaning",
             description: "Unclogging of blocked drains using advanced tools and techniques.",
-            price: "600 - ₹2000",
+            price: "₹600 - ₹2000",
             image: "Tailwind/drain cleaning.jpg"
           },
           {
@@ -910,7 +924,7 @@
 
     // DOM Elements
     const serviceCards = document.querySelectorAll('.service-card');
-    const servicesSection = document.querySelector('.py-10.text-center');
+    const servicesSection = document.getElementById('services-section');
     const subservicesSection = document.getElementById('subservices-section');
     const subservicesContainer = document.getElementById('subservices-container');
     const serviceTitle = document.getElementById('service-title');
@@ -932,6 +946,8 @@
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileSearchLocation = document.getElementById('mobile-search-location');
+    const desktopSearch = document.getElementById('desktop-search');
+    const mobileSearch = document.getElementById('mobile-search');
 
     // Event Listeners
     serviceCards.forEach(card => {
@@ -943,6 +959,7 @@
 
     backToServices.addEventListener('click', () => {
       showMainServices();
+      handleSearch({ target: { value: desktopSearch.value } }); // Reapply search on back
     });
 
     closeModal.addEventListener('click', () => {
@@ -951,13 +968,49 @@
 
     bookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // In a real application, you would send this data to a server
+
+      const serviceType = selectedService.value;
+      const subserviceId = selectedSubservice.value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const duration = document.getElementById('duration').value;
+      const address = document.getElementById('address').value;
+      const notes = document.getElementById('notes').value;
+      const location = document.querySelector('.location-box select').value;
+
+      const serviceData = servicesData[serviceType];
+      const subserviceData = serviceData.subservices.find(sub => sub.id === subserviceId);
+
+      const appointment = {
+        id: Date.now(),
+        service: serviceType,
+        subservice: subserviceId,
+        serviceTitle: serviceData.title,
+        subserviceTitle: subserviceData.title,
+        price: subserviceData.price,
+        date,
+        time,
+        duration,
+        name,
+        email,
+        phone,
+        address,
+        notes,
+        location,
+        status: 'Upcoming'
+      };
+
+      saveAppointment(appointment);
       bookingModal.classList.add('hidden');
       successModal.classList.remove('hidden');
     });
 
     successOk.addEventListener('click', () => {
       successModal.classList.add('hidden');
+      window.location.href = 'appointment.html';
     });
 
     // Featured services carousel navigation
@@ -994,23 +1047,24 @@
       }
     });
 
+    // Search event listeners
+    desktopSearch.addEventListener('input', handleSearch);
+    mobileSearch.addEventListener('input', handleSearch);
+
     // Functions
     function showSubservices(serviceType) {
       const service = servicesData[serviceType];
       if (!service) return;
       
-      // Update UI
       servicesSection.classList.add('hidden');
       subservicesSection.classList.remove('hidden');
       serviceTitle.textContent = service.title;
       
-      // Clear previous subservices
       subservicesContainer.innerHTML = '';
       
-      // Add subservices
       service.subservices.forEach(sub => {
         const subserviceCard = document.createElement('div');
-        subserviceCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300';
+        subserviceCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 subservice-card';
         subserviceCard.innerHTML = `
           <div class="h-40 bg-gray-200 flex items-center justify-center">
             <i class="fas fa-image text-4xl text-gray-400"></i>
@@ -1031,7 +1085,6 @@
         subservicesContainer.appendChild(subserviceCard);
       });
       
-      // Add event listeners to book buttons
       document.querySelectorAll('.book-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -1040,6 +1093,9 @@
           openBookingModal(serviceType, subserviceId);
         });
       });
+
+      // Apply current search to subservices
+      handleSearch({ target: { value: desktopSearch.value } });
     }
 
     function showMainServices() {
@@ -1062,6 +1118,46 @@
       
       // Show modal
       bookingModal.classList.remove('hidden');
+    }
+
+    function handleSearch(e) {
+      const term = e.target.value.toLowerCase();
+
+      // Sync search inputs
+      desktopSearch.value = term;
+      mobileSearch.value = term;
+
+      // Filter main services if visible
+      if (!servicesSection.classList.contains('hidden')) {
+        serviceCards.forEach(card => {
+          const serviceType = card.getAttribute('data-service');
+          const service = servicesData[serviceType];
+          const matches = service.title.toLowerCase().includes(term) || service.subservices.some(sub => sub.title.toLowerCase().includes(term));
+          card.style.display = matches ? '' : 'none';
+        });
+      }
+
+      // Filter subservices if visible
+      if (!subservicesSection.classList.contains('hidden')) {
+        const subCards = subservicesContainer.querySelectorAll('.subservice-card');
+        subCards.forEach(card => {
+          const title = card.querySelector('h3').textContent.toLowerCase();
+          card.style.display = title.includes(term) ? '' : 'none';
+        });
+      }
+
+      // Filter featured services
+      const featuredCards = featuredCarousel.querySelectorAll('.featured-card');
+      featuredCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(term) ? '' : 'none';
+      });
+    }
+
+    function saveAppointment(appointment) {
+      let appointments = JSON.parse(localStorage.getItem('wecare-appointments')) || [];
+      appointments.push(appointment);
+      localStorage.setItem('wecare-appointments', JSON.stringify(appointments));
     }
   </script>
 </body>

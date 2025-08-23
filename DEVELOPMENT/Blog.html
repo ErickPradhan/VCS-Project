@@ -63,6 +63,25 @@
     .mobile-menu {
       animation: slideDown 0.3s ease-out;
     }
+
+    /* Hide scrollbar for modern browsers */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+    
+    /* Animation for modal */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
@@ -73,7 +92,7 @@
       <div class="flex justify-between items-center">
         <!-- Logo with home link -->
         <div class="flex items-center">
-          <a href="#" class="text-2xl font-bold flex items-center" id="logo-home">
+          <a href="index.html" class="text-2xl font-bold flex items-center" id="logo-home">
             <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
             <span>WeCare</span>
           </a>
@@ -81,11 +100,12 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex space-x-1">
-          <a href="#" class="nav-link">Home</a>
-          <a href="#" class="nav-link">Services</a>
-          <a href="#" class="nav-link active">Blog</a>
-          <a href="#" class="nav-link">About Us</a>
-          <a href="#" class="nav-link">Contact Us</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="blog.html" class="nav-link active">Blog</a>
+          <a href="about.html" class="nav-link">About Us</a>
+          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="appointment.html" class="nav-link">Appointments</a>
         </nav>
 
         <!-- Right side elements -->
@@ -100,7 +120,7 @@
           
           <!-- Search -->
           <div class="hidden md:block relative">
-            <input type="text" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <input type="text" id="desktop-search" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
           </div>
           
@@ -124,7 +144,7 @@
             <option class="text-gray-800">Select Location</option>
           </select>
           <div class="relative flex-1">
-            <input type="text" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <input type="text" id="mobile-search" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
           </div>
         </div>
@@ -138,11 +158,12 @@
     <!-- Mobile Menu (hidden by default) -->
     <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-blue-900/95 backdrop-blur-sm px-4 py-3">
       <div class="flex flex-col space-y-3">
-        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
-        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
-        <a href="#" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">Blog</a>
-        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">About Us</a>
-        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="index.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
+        <a href="services.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
+        <a href="blog.html" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">Blog</a>
+        <a href="about.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">About Us</a>
+        <a href="contact.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="appointment.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Appointments</a>
       </div>
     </div>
   </header>
@@ -200,7 +221,7 @@
     </div>
 
     <!-- Blog Post 5 -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center animate__animated animate__fadeInUp">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
       <img src="mec.jpg" alt="Mechanic" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
       <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
         <h2 class="text-2xl font-semibold mb-3">Trusted Mechanics</h2>
@@ -259,7 +280,7 @@
           </div>
           <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
           <div class="flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+            <a href="https://facebook.com/wecare" class="text-gray-300 hover:text-white transition-colors">
               <i class="fab fa-facebook-f text-lg"></i>
             </a>
             <a href="#" class="text-gray-300 hover:text-white transition-colors">
@@ -278,11 +299,12 @@
         <div>
           <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+            <li><a href="services.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+            <li><a href="blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="appointment.html" class="text-gray-300 hover:text-white transition-colors">Appointments</a></li>
           </ul>
         </div>
         
@@ -290,11 +312,11 @@
         <div>
           <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
-            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+            <li><a href="services.html#plumbing" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+            <li><a href="services.html#electrician" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+            <li><a href="services.html#technician" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+            <li><a href="services.html#beautician" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+            <li><a href="services.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
           </ul>
         </div>
         
@@ -330,7 +352,7 @@
     </div>
   </footer>
 
-  <!-- JS for Read More -->
+  <!-- JS for Read More and Mobile Menu -->
   <script>
     function toggleReadMore(button) {
       const hiddenText = button.previousElementSibling.querySelector(".hidden-text");
@@ -356,6 +378,29 @@
         }
       });
     }
+
+    // Search functionality
+    const desktopSearch = document.getElementById('desktop-search');
+    const mobileSearch = document.getElementById('mobile-search');
+    const blogPosts = document.querySelectorAll('main > div');
+
+    function handleSearch(e) {
+      const term = e.target.value.toLowerCase();
+      
+      // Sync search inputs
+      desktopSearch.value = term;
+      mobileSearch.value = term;
+
+      // Filter blog posts
+      blogPosts.forEach(post => {
+        const title = post.querySelector('h2').textContent.toLowerCase();
+        const content = post.querySelector('p').textContent.toLowerCase();
+        post.style.display = (title.includes(term) || content.includes(term)) ? '' : 'none';
+      });
+    }
+
+    desktopSearch.addEventListener('input', handleSearch);
+    mobileSearch.addEventListener('input', handleSearch);
   </script>
 </body>
 </html>
