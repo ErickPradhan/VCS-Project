@@ -5,34 +5,258 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate on Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .hidden-text { display: none; }
+    
+    /* Custom styles from services page */
+    .header-gradient {
+      background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+    
+    .footer-gradient {
+      background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+    }
+    
+    .header-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .mobile-menu {
+      animation: slideDown 0.3s ease-out;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between px-6 py-3 bg-white shadow">
-    <div class="flex items-center space-x-4">
-      <button class="p-2 bg-gray-200 rounded"><i class="fas fa-home"></i></button>
-      <a href="#" class="px-3 py-1 hover:text-blue-500">Blog</a>
-      <a href="#" class="px-3 py-1 hover:text-blue-500">Services</a>
-      <a href="#" class="px-3 py-1 hover:text-blue-500">Home</a>
-      <a href="#" class="px-3 py-1 font-bold border-b-2 border-blue-500">About Us</a>
-      <a href="#" class="px-3 py-1 hover:text-blue-500">Contact Us</a>
+  <!-- Enhanced Navbar with Location Box (from Blog page) -->
+  <header class="header-gradient text-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo with home link -->
+        <div class="flex items-center">
+          <a href="#" class="text-2xl font-bold flex items-center" id="logo-home">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span>WeCare</span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex space-x-1">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Services</a>
+          <a href="#" class="nav-link">Blog</a>
+          <a href="#" class="nav-link active">About Us</a>
+          <a href="#" class="nav-link">Contact Us</a>
+        </nav>
+
+        <!-- Right side elements -->
+        <div class="flex items-center space-x-4">
+          <!-- Language Selector -->
+          <div class="hidden md:block">
+            <select class="bg-transparent text-white border border-white/30 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-white/50">
+              <option class="text-gray-800">EN</option>
+              <option class="text-gray-800">NE</option>
+            </select>
+          </div>
+          
+          <!-- Search -->
+          <div class="hidden md:block relative">
+            <input type="text" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+          
+          <!-- Auth Buttons -->
+          <div id="navActions" class="flex items-center space-x-4">
+      <!-- Before login -->
+      <a href="Login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+  Login / Signup
+</a>
+
+
+      <!-- After login -->
+      <div id="userMenu" class="relative hidden">
+        <button id="userIcon" class="flex items-center space-x-2 focus:outline-none">
+          <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M5.121 17.804A13.937 13.937 0 0112 15c2.486 0 4.789.635 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </button>
+        
+        <!-- Dropdown -->
+        <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg hidden">
+          <p id="welcomeText" class="px-4 py-2 text-gray-700 font-semibold"></p>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Bookings</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Profile</a>
+          <button id="logoutBtn" class="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5" />
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="flex items-center space-x-3">
-      <button class="px-3 py-1 bg-blue-500 text-white rounded">Login</button>
-      <button class="px-3 py-1 border rounded">Sign up</button>
-      <select class="border rounded px-2 py-1">
-        <option>EN</option>
-        <option>FR</option>
-        <option>NP</option>
-      </select>
-      <select class="border rounded px-2 py-1">
-        <option>Location</option>
-        <option>Kathmandu</option>
-        <option>Pokhara</option>
-      </select>
-    </div>
+
   </nav>
+
+
+  <!-- Signup Section -->
+  <div class="flex justify-center items-center p-6">
+    
+    <!-- Signup Form -->
+    <div id="signupBox" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md hidden">
+      <h2 class="text-xl font-semibold text-center mb-4">Signup</h2>
+      <form id="signupForm" class="space-y-4">
+        <input type="email" placeholder="Enter your email" required 
+          class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-600">
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          Send OTP
+        </button>
+      </form>
+    </div>
+
+    <!-- OTP Form -->
+    <div id="otpBox" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md hidden">
+      <h2 class="text-xl font-semibold text-center mb-4">Verify OTP</h2>
+      <form id="otpForm" class="space-y-4">
+        <input type="text" placeholder="Enter OTP" required 
+          class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-600">
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          Verify
+        </button>
+      </form>
+    </div>
+
+    <!-- Profile Completion Form -->
+    <div id="profileBox" class="bg-white shadow-lg rounded-xl p-8 w-full max-w-md hidden">
+      <p class="text-center text-gray-600 mb-4">Complete your profile to continue.</p>
+
+      <form id="profileForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Full Name <span class="text-red-500">*</span></label>
+          <input type="text" placeholder="eg: John Doe" required 
+            class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-600">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Address <span class="text-red-500">*</span></label>
+          <input type="text" placeholder="eg: Baluwatar, Kathmandu" required 
+            class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-600">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Email Address</label>
+          <input type="email" placeholder="example@gmail.com"  
+            class="w-full border px-4 py-2 rounded-lg bg-gray-100 text-gray-500">
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Phone Number</label>
+          <input type="text" placeholder="eg: 9841234567" 
+            class="w-full border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-600">
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          Complete Profile
+        </button>
+      </form>
+    </div>
+
+  </div>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="lg:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Location and Search for mobile -->
+      <div class="mt-3 md:hidden flex flex-col space-y-2 hidden" id="mobile-search-location">
+        <div class="flex space-x-2">
+          <select class="flex-1 bg-white/10 backdrop-blur-sm border border-white/30 rounded-md px-2 py-1 text-white focus:outline-none">
+            <option class="text-gray-800">Select Location</option>
+          </select>
+          <div class="relative flex-1">
+            <input type="text" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
+          <button class="flex-1 px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-blue-900/95 backdrop-blur-sm px-4 py-3">
+      <div class="flex flex-col space-y-3">
+        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
+        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
+        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Blog</a>
+        <a href="#" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">About Us</a>
+        <a href="#" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Location Box (right side below header) -->
+  <div class="flex justify-end mt-3 px-4">
+    <div class="location-box bg-gray-100 rounded-md px-3 py-2 flex items-center">
+      <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+      <select class="bg-transparent text-blue-500 focus:outline-none">
+        <option>Kathmandu, Nepal</option>
+        <option>Lalitpur, Nepal</option>
+        <option>Bhaktapur, Nepal</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="bg-white py-8 shadow-sm">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-blue-700">About WeCare</h1>
+        <p class="text-center text-gray-600 mt-2 max-w-2xl mx-auto">
+          We are a team of dedicated professionals committed to providing the best home services in Nepal.
+        </p>
+      </div>
+       </div>
 
     <!-- Team Section -->
   <section class="px-6 py-10">
@@ -129,25 +353,261 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="px-6 py-6 bg-gray-800 text-white mt-10">
-    <div class="max-w-5xl mx-auto flex justify-between">
-      <div>
-        <p class="font-bold">Logo</p>
-        <p>Ph no</p>
-        <p>Tel no</p>
-        <p>Location</p>
+  <!-- Enhanced Footer (from Blog page) -->
+  <footer class="footer-gradient text-white py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center mb-4">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span class="text-xl font-bold">WeCare</span>
+          </div>
+          <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Services -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">Kathmandu, Nepal</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">+977 9804297438</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="space-x-4">
-        <a href="#" class="hover:underline">Terms & Conditions</a>
-        <a href="#" class="hover:underline">Privacy Policy</a>
+      
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+        </div>
       </div>
     </div>
-    <p class="text-center mt-4 text-sm">Copyright 2u25© All Rights Reserved</p>
   </footer>
 
-  <!-- Optional JS for form -->
-  <script src="script.js"></script>
+<!-- JS for Mobile Menu -->
+<script>
+// Mobile menu functionality
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileSearchLocation = document.getElementById('mobile-search-location');
+
+if (mobileMenuButton && mobileMenu) {
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    if (mobileSearchLocation) {
+      mobileSearchLocation.classList.toggle('hidden');
+    }
+  });
+}
+
+// Feedback form handling
+const feedbackForm = document.querySelector("form");
+if (feedbackForm) {
+  feedbackForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent page reload
+
+    // Collect form data
+    const formData = {
+      name: feedbackForm.querySelector("input[type='text']").value,
+      phone: feedbackForm.querySelector("input[type='tel']").value,
+      email: feedbackForm.querySelector("input[type='email']").value,
+      message: feedbackForm.querySelector("textarea").value,
+      submittedAt: new Date().toLocaleString()
+    };
+
+    // Save to localStorage
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    feedbacks.push(formData);
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+
+    // Show popup message
+    alert("✅ Thank you for your feedback, " + formData.name + "!");
+
+    // Clear form
+    feedbackForm.reset();
+  });
+}
+
+document.getElementById("profileForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = e.target.querySelector("input[placeholder='Full Name']").value;
+  const email = e.target.querySelector("input[type='email']").value;
+
+  // Save user data
+  localStorage.setItem("user", JSON.stringify({ name, email }));
+
+  // Redirect to About page
+  window.location.href = "about.html";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navbarRight = document.getElementById("navbarRight");
+
+  if (user) {
+    // Show Profile Dropdown
+    navbarRight.innerHTML = `
+      <div class="relative">
+        <button id="profileBtn" class="flex items-center space-x-2 focus:outline-none">
+          <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" class="w-8 h-8 rounded-full">
+        </button>
+        <div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-4 z-50">
+          <p class="font-semibold">Hello ${user.name}</p>
+          <a href="#" class="block mt-2 hover:underline">My Bookings</a>
+          <a href="#" class="block mt-2 hover:underline">My Profile</a>
+          <button id="logoutBtn" class="flex items-center space-x-2 text-red-500 mt-3">
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    window.location.replace("http://127.0.0.1:5500/DEVELOPMENT/About%20Us.html");
+
+
+
+    // Toggle dropdown
+    const profileBtn = document.getElementById("profileBtn");
+    const profileMenu = document.getElementById("profileMenu");
+    profileBtn.addEventListener("click", () => {
+      profileMenu.classList.toggle("hidden");
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("user");
+      location.reload();
+    });
+  }
+});
+
+const signupBox = document.getElementById("signupBox");
+  const otpBox = document.getElementById("otpBox");
+  const profileBox = document.getElementById("profileBox");
+  const loginBtn = document.getElementById("loginBtn");
+  const userMenu = document.getElementById("userMenu");
+  const userIcon = document.getElementById("userIcon");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+  const welcomeText = document.getElementById("welcomeText");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  // Profile email field
+  const profileEmailInput = profileBox.querySelector("input[type='email']");
+
+  let userEmail = ""; // store email globally
+
+  // Show signup form when clicking Login button
+  loginBtn.addEventListener("click", () => {
+    signupBox.classList.remove("hidden");
+    otpBox.classList.add("hidden");
+    profileBox.classList.add("hidden");
+  });
+
+  // Signup → OTP
+  document.getElementById("signupForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    userEmail = e.target.querySelector("input[type='email']").value;
+
+    signupBox.classList.add("hidden");
+    otpBox.classList.remove("hidden");
+  });
+
+  // OTP → Profile
+  document.getElementById("otpForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    otpBox.classList.add("hidden");
+    profileBox.classList.remove("hidden");
+
+    // Fill email into profile form
+    profileEmailInput.value = userEmail;
+  });
+
+  // Profile → Navbar User Menu
+  document.getElementById("profileForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = e.target.querySelector("input[placeholder='eg: John Doe']").value;
+
+    signupBox.classList.add("hidden");
+    otpBox.classList.add("hidden");
+    profileBox.classList.add("hidden");
+
+    loginBtn.classList.add("hidden");
+    userMenu.classList.remove("hidden");
+    welcomeText.textContent = "Hello " + name;
+  });
+
+  // Toggle dropdown
+  userIcon.addEventListener("click", () => {
+    dropdownMenu.classList.toggle("hidden");
+  });
+
+  // Logout
+  logoutBtn.addEventListener("click", () => {
+    userMenu.classList.add("hidden");
+    loginBtn.classList.remove("hidden");
+    alert("Logged out successfully");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!userMenu.contains(e.target) && !userIcon.contains(e.target)) {
+      dropdownMenu.classList.add("hidden");
+    }
+  });
+</script>
 
 </body>
 </html>
