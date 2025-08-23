@@ -131,11 +131,6 @@
       </form>
     </div>
   </div>
-  <!-- Auth Buttons -->
-  <div class="hidden md:flex items-center space-x-2">
-    <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
-           <!-- <a href="signup.html" class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</a>-->
-          </div>
 
   <!-- Enhanced Navbar with Location Box (from Blog page) -->
   <header class="header-gradient text-white sticky top-0 z-50 header-shadow">
@@ -175,10 +170,9 @@
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
           </div>
           
-          <!-- Auth Buttons -->
+          <!-- Auth Buttons - Updated to only show Login -->
           <div class="hidden md:flex items-center space-x-2">
-            <button id="loginButton" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
-            <button id="signupButton" class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
+            <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
           </div>
           
           <!-- User Menu (hidden by default) -->
@@ -220,7 +214,6 @@
         </div>
         <div class="flex space-x-2">
           <button class="flex-1 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
-          <button class="flex-1 px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
         </div>
       </div>
     </div>
@@ -304,284 +297,284 @@
       </div>
 
       <!-- Niraj -->
-      <div class="flex items-start space-x-4">
-        <div class="w-24 flex flex-col items-center">
-          <a href="./NirajCV.html">
-            <img src="./Niraj.jpg" alt="Niraj's Portfolio" class="w-20 h-20 object-cover rounded-full">
-          </a>
-          <p class="mt-2 font-semibold">Niraj</p>
-        </div>
-        <p class="flex-1 border rounded p-3 bg-white shadow">
-          Niraj is responsible for Documentation. He keeps detailed project records and ensures everything is properly documented.
-        </p>
-      </div>
-
-      <!-- MD Rashid -->
-      <div class="flex items-start space-x-4">
-        <div class="w-24 flex flex-col items-center">
-          <a href="./RashidCV.html">
-            <img src="./Rashid.png" alt="MD Rashid's Portfolio" class="w-20 h-20 object-cover rounded-full">
-          </a>
-          <p class="mt-2 font-semibold">MD Rashid</p>
-        </div>
-        <p class="flex-1 border rounded p-3 bg-white shadow">
-          MD Rashid is working on the Services Page, About Us Page, and Login/Sign Up system. He ensures smooth navigation and secure authentication.
-        </p>
-      </div>
-
+  <div class="flex items-start space-x-4">
+    <div class="w-24 flex flex-col items-center">
+      <a href="./NirajCV.html">
+        <img src="./Niraj.jpg" alt="Niraj's Portfolio" class="w-20 h-20 object-cover rounded-full">
+      </a>
+      <p class="mt-2 font-semibold">Niraj</p>
     </div>
-  </section>
+    <p class="flex-1 border rounded p-3 bg-white shadow">
+      Niraj is responsible for Documentation. He keeps detailed project records and ensures everything is properly documented.
+    </p>
+  </div>
 
-  <!-- Feedback Form -->
-  <section class="px-6 py-10">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-xl font-semibold mb-4">Feedback Form</h2>
-      <form class="border rounded p-6 bg-white shadow">
-        <label class="block mb-2">Full Name:</label>
-        <input type="text" class="w-full border rounded p-2 mb-4" placeholder="Enter Your Name">
-
-        <label class="block mb-2">Phone No.:</label>
-        <input type="tel" class="w-full border rounded p-2 mb-4" placeholder="+977 **********">
-
-        <label class="block mb-2">Email:</label>
-        <input type="email" class="w-full border rounded p-2 mb-4" placeholder="Email">
-
-        <label class="block mb-2">Message:</label>
-        <textarea class="w-full border rounded p-2 mb-4" rows="4" placeholder="Enter your message"></textarea>
-
-        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
-      </form>
+  <!-- MD Rashid -->
+  <div class="flex items-start space-x-4">
+    <div class="w-24 flex flex-col items-center">
+      <a href="./RashidCV.html">
+        <img src="./Rashid.png" alt="MD Rashid's Portfolio" class="w-20 h-20 object-cover rounded-full">
+      </a>
+      <p class="mt-2 font-semibold">MD Rashid</p>
     </div>
-  </section>
+    <p class="flex-1 border rounded p-3 bg-white shadow">
+      MD Rashid is working on the Services Page, About Us Page, and Login/Sign Up system. He ensures smooth navigation and secure authentication.
+    </p>
+  </div>
 
-  <!-- Enhanced Footer (from Blog page) -->
-  <footer class="footer-gradient text-white py-12 mt-16">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="lg:col-span-1">
-          <div class="flex items-center mb-4">
-            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
-            <span class="text-xl font-bold">WeCare</span>
-          </div>
-          <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
-          <div class="flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-facebook-f text-lg"></i>
-            </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-twitter text-lg"></i>
-            </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-instagram text-lg"></i>
-            </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-linkedin-in text-lg"></i>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Quick Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
-            <li><a href="Blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-            <li><a href="About Us.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-            <li><a href="Contact Us.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-            <li><a href="Appointments.html" class="text-gray-300 hover:text-white transition-colors">Appointment</a></li>
-          </ul>
-        </div>
-        
-        <!-- Services -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
-          <ul class="space-y-2">
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
-            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
-          </ul>
-        </div>
-        
-        <!-- Contact Info -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
-          <ul class="space-y-3">
-            <li class="flex items-start">
-              <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
-              <span class="text-gray-300">Kathmandu, Nepal</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
-              <span class="text-gray-300">+977 9804297438</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
-              <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
-            </li>
-          </ul>
-        </div>
+</div>
+</section>
+
+<!-- Feedback Form -->
+<section class="px-6 py-10">
+<div class="max-w-3xl mx-auto">
+  <h2 class="text-xl font-semibold mb-4">Feedback Form</h2>
+  <form class="border rounded p-6 bg-white shadow">
+    <label class="block mb-2">Full Name:</label>
+    <input type="text" class="w-full border rounded p-2 mb-4" placeholder="Enter Your Name">
+
+    <label class="block mb-2">Phone No.:</label>
+    <input type="tel" class="w-full border rounded p-2 mb-4" placeholder="+977 **********">
+
+    <label class="block mb-2">Email:</label>
+    <input type="email" class="w-full border rounded p-2 mb-4" placeholder="Email">
+
+    <label class="block mb-2">Message:</label>
+    <textarea class="w-full border rounded p-2 mb-4" rows="4" placeholder="Enter your message"></textarea>
+
+    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
+  </form>
+</div>
+</section>
+
+<!-- Enhanced Footer (from Blog page) -->
+<footer class="footer-gradient text-white py-12 mt-16">
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- Company Info -->
+    <div class="lg:col-span-1">
+      <div class="flex items-center mb-4">
+        <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+        <span class="text-xl font-bold">WeCare</span>
       </div>
-      
-      <!-- Bottom Bar -->
-      <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
-        <div class="flex space-x-4">
-          <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-          <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
-        </div>
+      <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-facebook-f text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-twitter text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-instagram text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-linkedin-in text-lg"></i>
+        </a>
       </div>
     </div>
-  </footer>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+        <li><a href="Blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+        <li><a href="About Us.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+        <li><a href="Contact Us.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+        <li><a href="Appointments.html" class="text-gray-300 hover:text-white transition-colors">Appointment</a></li>
+      </ul>
+    </div>
+    
+    <!-- Services -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
+      <ul class="space-y-2">
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start">
+          <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">Kathmandu, Nepal</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">+977 9804297438</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
+    <div class="flex space-x-4">
+      <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+      <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+      <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+    </div>
+  </div>
+</div>
+</footer>
 
-  <!-- JavaScript -->
-  <script>
-    // Mobile menu functionality
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileSearchLocation = document.getElementById('mobile-search-location');
+<!-- JavaScript -->
+<script>
+// Mobile menu functionality
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileSearchLocation = document.getElementById('mobile-search-location');
 
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        if (mobileSearchLocation) {
-          mobileSearchLocation.classList.toggle('hidden');
-        }
-      });
+if (mobileMenuButton && mobileMenu) {
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    if (mobileSearchLocation) {
+      mobileSearchLocation.classList.toggle('hidden');
     }
+  });
+}
 
-    // Login functionality
-    const loginModal = document.getElementById('loginModal');
-    const loginButton = document.getElementById('loginButton');
-    const closeLogin = document.getElementById('closeLogin');
-    const loginForm = document.getElementById('loginForm');
-    const userMenu = document.getElementById('userMenu');
-    const userIcon = document.getElementById('userIcon');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    const welcomeText = document.getElementById('welcomeText');
-    const logoutButton = document.getElementById('logoutButton');
-    const signupButton = document.getElementById('signupButton');
-    const showSignup = document.getElementById('showSignup');
+// Login functionality
+const loginModal = document.getElementById('loginModal');
+const loginButton = document.getElementById('loginButton');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const userMenu = document.getElementById('userMenu');
+const userIcon = document.getElementById('userIcon');
+const dropdownMenu = document.getElementById('dropdownMenu');
+const welcomeText = document.getElementById('welcomeText');
+const logoutButton = document.getElementById('logoutButton');
+const signupButton = document.getElementById('signupButton');
+const showSignup = document.getElementById('showSignup');
 
-    // Open login modal
-    if (loginButton) {
-      loginButton.addEventListener('click', () => {
-        loginModal.style.display = 'flex';
-      });
-    }
+// Open login modal
+if (loginButton) {
+  loginButton.addEventListener('click', () => {
+    loginModal.style.display = 'flex';
+  });
+}
 
-    // Close login modal
-    if (closeLogin) {
-      closeLogin.addEventListener('click', () => {
-        loginModal.style.display = 'none';
-      });
-    }
+// Close login modal
+if (closeLogin) {
+  closeLogin.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+  });
+}
 
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === loginModal) {
-        loginModal.style.display = 'none';
-      }
-    });
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+  if (e.target === loginModal) {
+    loginModal.style.display = 'none';
+  }
+});
 
-    // Login form submission
-    if (loginForm) {
-      loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        
-        // Simulate login
-        localStorage.setItem('user', JSON.stringify({ email, name: email.split('@')[0] }));
-        
-        // Update UI
-        if (loginButton) loginButton.parentElement.classList.add('hidden');
-        userMenu.classList.remove('hidden');
-        welcomeText.textContent = `Hello, ${email.split('@')[0]}`;
-        
-        // Close modal
-        loginModal.style.display = 'none';
-        
-        alert('Login successful!');
-      });
-    }
+// Login form submission
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    
+    // Simulate login
+    localStorage.setItem('user', JSON.stringify({ email, name: email.split('@')[0] }));
+    
+    // Update UI
+    if (loginButton) loginButton.parentElement.classList.add('hidden');
+    userMenu.classList.remove('hidden');
+    welcomeText.textContent = `Hello, ${email.split('@')[0]}`;
+    
+    // Close modal
+    loginModal.style.display = 'none';
+    
+    alert('Login successful!');
+  });
+}
 
-    // Toggle user dropdown
-    if (userIcon) {
-      userIcon.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('hidden');
-      });
-    }
+// Toggle user dropdown
+if (userIcon) {
+  userIcon.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+}
 
-    // Logout functionality
-    if (logoutButton) {
-      logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('user');
-        userMenu.classList.add('hidden');
-        if (loginButton) loginButton.parentElement.classList.remove('hidden');
-        alert('Logged out successfully!');
-      });
-    }
+// Logout functionality
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    userMenu.classList.add('hidden');
+    if (loginButton) loginButton.parentElement.classList.remove('hidden');
+    alert('Logged out successfully!');
+  });
+}
 
-    // Signup button (redirect to signup page)
-    if (signupButton) {
-      signupButton.addEventListener('click', () => {
-        alert('Redirecting to signup page...');
-        // In a real app: window.location.href = 'signup.html';
-      });
-    }
+// Signup button (redirect to signup page)
+if (signupButton) {
+  signupButton.addEventListener('click', () => {
+    alert('Redirecting to signup page...');
+    // In a real app: window.location.href = 'signup.html';
+  });
+}
 
-    if (showSignup) {
-      showSignup.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('Redirecting to signup page...');
-        // In a real app: window.location.href = 'signup.html';
-      });
-    }
+if (showSignup) {
+  showSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Redirecting to signup page...');
+    // In a real app: window.location.href = 'signup.html';
+  });
+}
 
-    // Check if user is already logged in
-    function checkLoginStatus() {
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (user) {
-        if (loginButton) loginButton.parentElement.classList.add('hidden');
-        userMenu.classList.remove('hidden');
-        welcomeText.textContent = `Hello, ${user.name}`;
-      }
-    }
+// Check if user is already logged in
+function checkLoginStatus() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    if (loginButton) loginButton.parentElement.classList.add('hidden');
+    userMenu.classList.remove('hidden');
+    welcomeText.textContent = `Hello, ${user.name}`;
+  }
+}
 
-    // Feedback form handling
-    const feedbackForm = document.querySelector("form");
-    if (feedbackForm) {
-      feedbackForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent page reload
+// Feedback form handling
+const feedbackForm = document.querySelector("form");
+if (feedbackForm) {
+  feedbackForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent page reload
 
-        // Collect form data
-        const formData = {
-          name: feedbackForm.querySelector("input[type='text']").value,
-          phone: feedbackForm.querySelector("input[type='tel']").value,
-          email: feedbackForm.querySelector("input[type='email']").value,
-          message: feedbackForm.querySelector("textarea").value,
-          submittedAt: new Date().toLocaleString()
-        };
+    // Collect form data
+    const formData = {
+      name: feedbackForm.querySelector("input[type='text']").value,
+      phone: feedbackForm.querySelector("input[type='tel']").value,
+      email: feedbackForm.querySelector("input[type='email']").value,
+      message: feedbackForm.querySelector("textarea").value,
+      submittedAt: new Date().toLocaleString()
+    };
 
-        // Save to localStorage
-        let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-        feedbacks.push(formData);
-        localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+    // Save to localStorage
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    feedbacks.push(formData);
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
 
-        // Show popup message
-        alert("✅ Thank you for your feedback, " + formData.name + "!");
+    // Show popup message
+    alert("✅ Thank you for your feedback, " + formData.name + "!");
 
-        // Clear form
-        feedbackForm.reset();
-      });
-    }
+    // Clear form
+    feedbackForm.reset();
+  });
+}
 
-    // Initialize page
-    checkLoginStatus();
-  </script>
+// Initialize page
+checkLoginStatus();
+</script>
 </body>
 </html>
