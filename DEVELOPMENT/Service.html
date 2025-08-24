@@ -90,6 +90,81 @@
     .mobile-menu {
       animation: slideDown 0.3s ease-out;
     }
+    
+    /* New animations for subservices */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-slideInUp {
+      animation: slideInUp 0.5s ease-out;
+    }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .animate-fadeInScale {
+      animation: fadeInScale 0.4s ease-out;
+    }
+    
+    /* Hover effects for service cards */
+    .service-card {
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .subservice-card {
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .subservice-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .subservice-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Staggered animation for subservices */
+    .subservice-card:nth-child(1) { transition-delay: 0.1s; }
+    .subservice-card:nth-child(2) { transition-delay: 0.2s; }
+    .subservice-card:nth-child(3) { transition-delay: 0.3s; }
+    .subservice-card:nth-child(4) { transition-delay: 0.4s; }
+    
+    /* Logo styling for subservices */
+    .service-logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -134,8 +209,8 @@
           
           <!-- Auth Buttons -->
           <div class="hidden md:flex items-center space-x-2">
-            <button class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
-            <button class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
+            <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
+           <!-- <a href="signup.html" class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</a>-->
           </div>
           
           <!-- Mobile menu button -->
@@ -261,7 +336,7 @@
   <section id="subservices-section" class="py-10 bg-gray-100 hidden">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex items-center mb-6">
-        <button id="back-to-services" class="mr-4 text-blue-600 hover:text-blue-800">
+        <button id="back-to-services" class="mr-4 text-blue-600 hover:text-blue-800 transition-colors duration-200">
           <i class="fas fa-arrow-left"></i> Back to Services
         </button>
         <h2 id="service-title" class="text-2xl font-bold"></h2>
@@ -287,7 +362,7 @@
         <!-- Carousel Container -->
         <div id="featured-carousel" class="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-2">
           <!-- Featured Service 1 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-blue-100 flex items-center justify-center">
               <video src="plumber.mp4" autoplay muted loop></video>
             </div>
@@ -308,7 +383,7 @@
           </div>
           
           <!-- Featured Service 2 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-yellow-100 flex items-center justify-center">
                 <video src="Electrician.mp4" autoplay muted loop></video>
             </div>
@@ -329,7 +404,7 @@
           </div>
           
           <!-- Featured Service 3 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-green-100 flex items-center justify-center">
                 <video src="tutor.mp4" autoplay muted loop></video>
             </div>
@@ -350,7 +425,7 @@
           </div>
           
           <!-- Featured Service 4 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-purple-100 flex items-center justify-center">
                 <video src="home cleaning.mp4" autoplay muted loop></video>
             </div>
@@ -371,7 +446,7 @@
           </div>
           
           <!-- Featured Service 5 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-red-100 flex items-center justify-center">
                 <video src="car repair.mp4" autoplay muted loop></video>
             </div>
@@ -392,7 +467,7 @@
           </div>
           
           <!-- Featured Service 6 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-pink-100 flex items-center justify-center">
                 <video src="pet care.mp4" autoplay muted loop></video>
             </div>
@@ -413,7 +488,7 @@
           </div>
           
           <!-- Featured Service 7 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-indigo-100 flex items-center justify-center">
                 <video src="IT technician.mp4" autoplay muted loop></video>
             </div>
@@ -434,7 +509,7 @@
           </div>
           
           <!-- Featured Service 8 -->
-          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-shadow duration-300 featured-card">
+          <div class="w-72 bg-white rounded-xl shadow-md hover:shadow-xl overflow-hidden flex-shrink-0 transition-all duration-300 featured-card transform hover:-translate-y-1">
             <div class="h-48 bg-teal-100 flex items-center justify-center">
                 <video src="medical.mp4" autoplay muted loop></video>
             </div>
@@ -644,8 +719,8 @@
       <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
-          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+          <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
           <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
         </div>
       </div>
@@ -654,269 +729,317 @@
 
   <!-- JavaScript -->
   <script>
-    // Service data structure with subservices
+    // Service data structure with subservices and logos
     const servicesData = {
       plumbing: {
         title: "Plumbing Services",
+        icon: "fa-faucet",
+        color: "bg-blue-100 text-blue-600",
         subservices: [
           {
             id: "pipe-repair",
             title: "Pipe Repair & Replacement",
             description: "Expert repair and replacement of leaking or damaged pipes with quality materials.",
             price: "₹800 - ₹2500",
-            image: "pipe-repair.jpg"
+            icon: "fa-wrench",
+            color: "bg-blue-100 text-blue-600"
           },
           {
             id: "faucet-installation",
             title: "Faucet Installation",
             description: "Professional installation of new faucets in kitchen and bathrooms.",
             price: "₹500 - ₹1500",
-            image: "fauct repair.jpg"
+            icon: "fa-faucet",
+            color: "bg-blue-200 text-blue-700"
           },
           {
             id: "drain-cleaning",
             title: "Drain Cleaning",
             description: "Unclogging of blocked drains using advanced tools and techniques.",
             price: "₹600 - ₹2000",
-            image: "Tailwind/drain cleaning.jpg"
+            icon: "fa-water",
+            color: "bg-blue-300 text-blue-800"
           },
           {
             id: "water-heater",
             title: "Water Heater Service",
             description: "Installation, repair, and maintenance of water heaters of all types.",
             price: "₹1000 - ₹4000",
-            image: "water-heater.jpg"
+            icon: "fa-fire",
+            color: "bg-blue-400 text-white"
           }
         ]
       },
       electrician: {
         title: "Electrical Services",
+        icon: "fa-bolt",
+        color: "bg-yellow-100 text-yellow-600",
         subservices: [
           {
             id: "wiring-installation",
             title: "Wiring Installation",
             description: "Safe and professional electrical wiring for homes and offices.",
             price: "₹1500 - ₹5000",
-            image: "wiring-installation.jpg"
+            icon: "fa-bolt",
+            color: "bg-yellow-100 text-yellow-600"
           },
           {
             id: "lighting-installation",
             title: "Lighting Installation",
             description: "Installation of indoor and outdoor lighting fixtures.",
             price: "₹500 - ₹2000",
-            image: "lighting-installation.jpg"
+            icon: "fa-lightbulb",
+            color: "bg-yellow-200 text-yellow-700"
           },
           {
             id: "switch-repair",
             title: "Switch & Socket Repair",
             description: "Repair and replacement of faulty switches and power outlets.",
             price: "₹300 - ₹1000",
-            image: "switch-repair.jpg"
+            icon: "fa-toggle-on",
+            color: "bg-yellow-300 text-yellow-800"
           },
           {
             id: "breaker-service",
             title: "Circuit Breaker Service",
             description: "Troubleshooting and repair of circuit breaker issues.",
             price: "₹800 - ₹2500",
-            image: "breaker-service.jpg"
+            icon: "fa-plug",
+            color: "bg-yellow-400 text-white"
           }
         ]
       },
       technician: {
         title: "Technician Services",
+        icon: "fa-tools",
+        color: "bg-purple-100 text-purple-600",
         subservices: [
           {
             id: "ac-repair",
             title: "AC Repair & Service",
             description: "Professional AC maintenance, repair, and installation services.",
             price: "₹800 - ₹3000",
-            image: "ac-repair.jpg"
+            icon: "fa-fan",
+            color: "bg-purple-100 text-purple-600"
           },
           {
             id: "tv-repair",
             title: "TV Repair",
             description: "Expert repair for all types of televisions and displays.",
             price: "₹500 - ₹2500",
-            image: "tv-repair.jpg"
+            icon: "fa-tv",
+            color: "bg-purple-200 text-purple-700"
           },
           {
             id: "refrigerator-repair",
             title: "Refrigerator Repair",
             description: "Comprehensive refrigerator repair and maintenance services.",
             price: "₹700 - ₹2800",
-            image: "refrigerator-repair.jpg"
+            icon: "fa-snowflake",
+            color: "bg-purple-300 text-purple-800"
           },
           {
             id: "washing-machine-repair",
             title: "Washing Machine Repair",
             description: "Repair and service for all types of washing machines.",
             price: "₹600 - ₹2200",
-            image: "washing-machine-repair.jpg"
+            icon: "fa-soap",
+            color: "bg-purple-400 text-white"
           }
         ]
       },
       beautician: {
         title: "Beautician Services",
+        icon: "fa-spa",
+        color: "bg-pink-100 text-pink-600",
         subservices: [
           {
             id: "facial",
             title: "Professional Facial",
             description: "Rejuvenating facial treatments for glowing skin.",
             price: "₹1000 - ₹3000",
-            image: "facial.jpg"
+            icon: "fa-spa",
+            color: "bg-pink-100 text-pink-600"
           },
           {
             id: "makeup",
             title: "Bridal & Party Makeup",
             description: "Expert makeup services for special occasions.",
             price: "₹1500 - ₹5000",
-            image: "makeup.jpg"
+            icon: "fa-paint-brush",
+            color: "bg-pink-200 text-pink-700"
           },
           {
             id: "waxing",
             title: "Body Waxing",
             description: "Professional waxing services for smooth skin.",
             price: "₹500 - ₹2000",
-            image: "waxing.jpg"
+            icon: "fa-hand-sparkles",
+            color: "bg-pink-300 text-pink-800"
           },
           {
             id: "manicure",
             title: "Manicure & Pedicure",
             description: "Luxurious nail care and grooming services.",
             price: "₹600 - ₹1800",
-            image: "manicure.jpg"
+            icon: "fa-hand-paper",
+            color: "bg-pink-400 text-white"
           }
         ]
       },
       mechanician: {
         title: "Mechanic Services",
+        icon: "fa-car",
+        color: "bg-red-100 text-red-600",
         subservices: [
           {
             id: "oil-change",
             title: "Oil Change Service",
             description: "Complete oil change with quality lubricants.",
             price: "₹800 - ₹2000",
-            image: "oil-change.jpg"
+            icon: "fa-oil-can",
+            color: "bg-red-100 text-red-600"
           },
           {
             id: "brake-service",
             title: "Brake Repair",
             description: "Professional brake inspection and repair services.",
             price: "₹1000 - ₹4000",
-            image: "brake-service.jpg"
+            icon: "fa-car-crash",
+            color: "bg-red-200 text-red-700"
           },
           {
             id: "engine-repair",
             title: "Engine Repair",
             description: "Comprehensive engine diagnostics and repair.",
             price: "₹1500 - ₹6000",
-            image: "engine-repair.jpg"
+            icon: "fa-cogs",
+            color: "bg-red-300 text-red-800"
           },
           {
             id: "car-service",
             title: "Periodic Maintenance",
             description: "Scheduled maintenance to keep your vehicle in top condition.",
             price: "₹1200 - ₹3500",
-            image: "car-service.jpg"
+            icon: "fa-tools",
+            color: "bg-red-400 text-white"
           }
         ]
       },
       tutor: {
         title: "Tutoring Services",
+        icon: "fa-book",
+        color: "bg-green-100 text-green-600",
         subservices: [
           {
             id: "math-tutoring",
             title: "Mathematics Tutoring",
             description: "Expert math tutoring for all grade levels.",
             price: "₹400 - ₹1000/hour",
-            image: "math-tutoring.jpg"
+            icon: "fa-square-root-alt",
+            color: "bg-green-100 text-green-600"
           },
           {
             id: "science-tutoring",
             title: "Science Tutoring",
             description: "Comprehensive science subjects tutoring.",
             price: "₹400 - ₹1000/hour",
-            image: "science-tutoring.jpg"
+            icon: "fa-flask",
+            color: "bg-green-200 text-green-700"
           },
           {
             id: "language-tutoring",
             title: "Language Tutoring",
             description: "Language learning for English, Hindi, and more.",
             price: "₹500 - ₹1200/hour",
-            image: "language-tutoring.jpg"
+            icon: "fa-language",
+            color: "bg-green-300 text-green-800"
           },
           {
             id: "music-lessons",
             title: "Music Lessons",
             description: "Professional music instruction for various instruments.",
             price: "₹600 - ₹1500/hour",
-            image: "music-lessons.jpg"
+            icon: "fa-music",
+            color: "bg-green-400 text-white"
           }
         ]
       },
       medical: {
         title: "Medical Services",
+        icon: "fa-first-aid",
+        color: "bg-teal-100 text-teal-600",
         subservices: [
           {
             id: "doctor-consultation",
             title: "Doctor Consultation",
             description: "In-home doctor consultations for general health issues.",
             price: "₹1000 - ₹2000",
-            image: "doctor-consultation.jpg"
+            icon: "fa-user-md",
+            color: "bg-teal-100 text-teal-600"
           },
           {
             id: "nursing-care",
             title: "Nursing Care",
             description: "Professional nursing care for patients at home.",
             price: "₹800 - ₹1800/day",
-            image: "nursing-care.jpg"
+            icon: "fa-heartbeat",
+            color: "bg-teal-200 text-teal-700"
           },
           {
             id: "physiotherapy",
             title: "Physiotherapy",
             description: "Professional physiotherapy sessions at your home.",
             price: "₹1000 - ₹2500/session",
-            image: "physiotherapy.jpg"
+            icon: "fa-hands-helping",
+            color: "bg-teal-300 text-teal-800"
           },
           {
             id: "elderly-care",
             title: "Elderly Care",
             description: "Compassionate care for elderly family members.",
             price: "₹1200 - ₹3000/day",
-            image: "elderly-care.jpg"
+            icon: "fa-wheelchair",
+            color: "bg-teal-400 text-white"
           }
         ]
       },
       petcare: {
         title: "Pet Care Services",
+        icon: "fa-paw",
+        color: "bg-indigo-100 text-indigo-600",
         subservices: [
           {
             id: "pet-grooming",
             title: "Pet Grooming",
             description: "Professional grooming services for your pets.",
             price: "₹800 - ₹2000",
-            image: "pet-grooming.jpg"
+            icon: "fa-cut",
+            color: "bg-indigo-100 text-indigo-600"
           },
           {
             id: "pet-sitting",
             title: "Pet Sitting",
             description: "Reliable pet sitting services when you're away.",
             price: "₹500 - ₹1500/day",
-            image: "pet-sitting.jpg"
+            icon: "fa-home",
+            color: "bg-indigo-200 text-indigo-700"
           },
           {
             id: "veterinary-visit",
             title: "Veterinary Home Visit",
             description: "Veterinary consultations at your home.",
             price: "₹1000 - ₹2500",
-            image: "veterinary-visit.jpg"
+            icon: "fa-stethoscope",
+            color: "bg-indigo-300 text-indigo-800"
           },
           {
             id: "dog-walking",
             title: "Dog Walking",
             description: "Regular dog walking services for busy pet owners.",
             price: "₹300 - ₹800/walk",
-            image: "dog-walking.jpg"
+            icon: "fa-walking",
+            color: "bg-indigo-400 text-white"
           }
         ]
       }
@@ -1062,17 +1185,17 @@
       
       subservicesContainer.innerHTML = '';
       
-      service.subservices.forEach(sub => {
+      service.subservices.forEach((sub, index) => {
         const subserviceCard = document.createElement('div');
-        subserviceCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 subservice-card';
+        subserviceCard.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 subservice-card';
         subserviceCard.innerHTML = `
-          <div class="h-40 bg-gray-200 flex items-center justify-center">
-            <i class="fas fa-image text-4xl text-gray-400"></i>
-          </div>
-          <div class="p-4">
-            <h3 class="font-semibold text-lg mb-2">${sub.title}</h3>
-            <p class="text-gray-600 text-sm mb-4">${sub.description}</p>
-            <div class="flex justify-between items-center">
+          <div class="p-6 flex flex-col items-center">
+            <div class="service-logo ${sub.color} rounded-full w-16 h-16 flex items-center justify-center mb-4">
+              <i class="${sub.icon} text-2xl"></i>
+            </div>
+            <h3 class="font-semibold text-lg mb-2 text-center">${sub.title}</h3>
+            <p class="text-gray-600 text-sm mb-4 text-center">${sub.description}</p>
+            <div class="flex justify-between items-center w-full mt-auto">
               <span class="text-blue-600 font-bold">${sub.price}</span>
               <button class="book-btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200" 
                       data-service="${serviceType}" 
@@ -1083,6 +1206,11 @@
           </div>
         `;
         subservicesContainer.appendChild(subserviceCard);
+        
+        // Animate the subservice cards with a delay
+        setTimeout(() => {
+          subserviceCard.classList.add('visible');
+        }, index * 100);
       });
       
       document.querySelectorAll('.book-btn').forEach(btn => {
