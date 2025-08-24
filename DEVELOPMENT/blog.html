@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeCare - Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate on Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .hidden-text { display: none; }
+    
+    /* Custom styles from services page */
+    .header-gradient {
+      background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+    
+    .footer-gradient {
+      background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+    }
+    
+    .header-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .mobile-menu {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    /* Hide scrollbar for modern browsers */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+    
+    /* Animation for modal */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+  <!-- Enhanced Navbar with Location Box -->
+  <header class="header-gradient text-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo with home link -->
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold flex items-center" id="logo-home">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span>WeCare</span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="Service.html" class="nav-link">Services</a>
+          <a href="Blog.html" class="nav-link active">Blog</a>
+          <a href="About Us.html" class="nav-link">About Us</a>
+          <a href="Contact Us.html" class="nav-link">Contact Us</a>
+          <a href="Appointments.html" class="nav-link">Appointments</a>
+        </nav>
+
+        <!-- Right side elements -->
+        <div class="flex items-center space-x-4">
+          <!-- Language Selector -->
+          <div class="hidden md:block">
+            <select class="bg-transparent text-white border border-white/30 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-white/50">
+              <option class="text-gray-800">EN</option>
+              <option class="text-gray-800">NE</option>
+            </select>
+          </div>
+          
+          <!-- Search -->
+          <div class="hidden md:block relative">
+            <input type="text" id="desktop-search" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+          
+           <!-- Auth Buttons -->
+          <div class="hidden md:flex items-center space-x-2">
+           <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
+           <!-- <a href="signup.html" class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</a>-->
+          </div>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="lg:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Location and Search for mobile -->
+      <div class="mt-3 md:hidden flex flex-col space-y-2" id="mobile-search-location">
+        <div class="flex space-x-2">
+          <select class="flex-1 bg-white/10 backdrop-blur-sm border border-white/30 rounded-md px-2 py-1 text-white focus:outline-none">
+            <option class="text-gray-800">Select Location</option>
+          </select>
+          <div class="relative flex-1">
+            <input type="text" id="mobile-search" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
+          <button class="flex-1 px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-blue-900/95 backdrop-blur-sm px-4 py-3">
+      <div class="flex flex-col space-y-3">
+        <a href="index.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
+        <a href="Service.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
+        <a href="Blog.html" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">Blog</a>
+        <a href="About Us.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">About Us</a>
+        <a href="Contact Us.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="Appointments.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Appointments</a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Location Box (right side below header) -->
+  <div class="flex justify-end mt-3 px-4">
+    <div class="location-box bg-gray-100 rounded-md px-3 py-2 flex items-center">
+      <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+      <select class="bg-transparent text-blue-500 focus:outline-none">
+        <option>Kathmandu, Nepal</option>
+        <option>Lalitpur, Nepal</option>
+        <option>Bhaktapur, Nepal</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Blog Section -->
+  <main class="px-6 py-12 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeInDown">Our Service Blogs</h1>
+
+    <!-- Blog Post 1 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
+      <img src="Plumber.png" alt="Plumbing" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold mb-3">Reliable Plumbing Services</h2>
+        <p class="text-gray-700">WeCare connects you with experienced plumbers available 24/7. From leaky faucets to major pipe repairs, our verified experts ensure your home runs smoothly.</p>
+      </div>
+    </div>
+
+    <!-- Blog Post 2 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold mb-3">Skilled Electricians</h2>
+        <p class="text-gray-700">Whether it's wiring installation, fixing power issues, or installing electrical equipment, WeCare electricians provide safe and professional services at your doorstep.</p>
+      </div>
+      <img src="electrician.png" alt="Electrician" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
+    </div>
+
+    <!-- Blog Post 3 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
+      <img src="barber.jpg" alt="Barber" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold mb-3">Grooming at Home</h2>
+        <p class="text-gray-700">Book barbers and beauticians who bring grooming services to your home. Perfect for those who value comfort and convenience without compromising quality.</p>
+      </div>
+    </div>
+
+    <!-- Blog Post 4 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold mb-3">Expert Tutors</h2>
+        <p class="text-gray-700">WeCare tutors specialize in multiple subjects and provide personalized learning support for students of all ages, helping them excel academically.</p>
+      </div>
+      <img src="tutors service.png" alt="Tutor" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
+    </div>
+
+    <!-- Blog Post 5 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12 animate__animated animate__fadeInUp">
+      <img src="mec.jpg" alt="Mechanic" class="rounded-xl shadow-md hover:scale-105 transition w-96 h-64 object-cover mx-auto" />
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <h2 class="text-2xl font-semibold mb-3">Trusted Mechanics</h2>
+        <p class="text-gray-700">From bike servicing to car repairs, WeCare mechanics provide quick, reliable, and affordable solutions so your vehicles stay in top condition.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Positive Impacts Section -->
+  <section class="bg-gray-100 py-16 px-6">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Positive Impacts</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+      <!-- Card 1 -->
+      <div class="bg-white shadow-md p-6 rounded-xl animate__animated animate__fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Job Creation</h3>
+        <p class="text-gray-700">
+          WeCare has generated thousands of job opportunities for skilled workers across Nepal. 
+          <span class="hidden-text">By connecting service providers with customers, we empower individuals to earn and grow sustainably.</span>
+        </p>
+        <button onclick="toggleReadMore(this)" class="text-yellow-500 mt-2">Read more</button>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white shadow-md p-6 rounded-xl animate__animated animate__fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Community Support</h3>
+        <p class="text-gray-700">
+          Our services strengthen local communities by building trust and accessibility. 
+          <span class="hidden-text">WeCare ensures everyone has access to quality services, regardless of location.</span>
+        </p>
+        <button onclick="toggleReadMore(this)" class="text-yellow-500 mt-2">Read more</button>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-md p-6 rounded-xl animate__animated animate__fadeInUp">
+        <h3 class="text-xl font-semibold mb-2">Sustainable Growth</h3>
+        <p class="text-gray-700">
+          We promote eco-friendly and affordable solutions for households. 
+          <span class="hidden-text">From reducing energy waste to encouraging local hiring, we drive sustainable impact in society.</span>
+        </p>
+        <button onclick="toggleReadMore(this)" class="text-yellow-500 mt-2">Read more</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer class="footer-gradient text-white py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center mb-4">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span class="text-xl font-bold">WeCare</span>
+          </div>
+          <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
+          <div class="flex space-x-4">
+            <a href="https://facebook.com/wecare" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+            <li><a href="Blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="About Us.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="Contact Us.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="Appointments.html" class="text-gray-300 hover:text-white transition-colors">Appointments</a></li>
+          </ul>
+        </div>
+        
+        <!-- Services -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">Kathmandu, Nepal</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">+977 9804297438</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
+        <div class="flex space-x-4">
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+          <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS for Read More and Mobile Menu -->
+  <script>
+    function toggleReadMore(button) {
+      const hiddenText = button.previousElementSibling.querySelector(".hidden-text");
+      if (hiddenText.style.display === "inline") {
+        hiddenText.style.display = "none";
+        button.innerText = "Read more";
+      } else {
+        hiddenText.style.display = "inline";
+        button.innerText = "Read less";
+      }
+    }
+    
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileSearchLocation = document.getElementById('mobile-search-location');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileSearchLocation) {
+          mobileSearchLocation.classList.toggle('hidden');
+        }
+      });
+    }
+
+    // Search functionality
+    const desktopSearch = document.getElementById('desktop-search');
+    const mobileSearch = document.getElementById('mobile-search');
+    const blogPosts = document.querySelectorAll('main > div');
+
+    function handleSearch(e) {
+      const term = e.target.value.toLowerCase();
+      
+      // Sync search inputs
+      desktopSearch.value = term;
+      mobileSearch.value = term;
+
+      // Filter blog posts
+      blogPosts.forEach(post => {
+        const title = post.querySelector('h2').textContent.toLowerCase();
+        const content = post.querySelector('p').textContent.toLowerCase();
+        post.style.display = (title.includes(term) || content.includes(term)) ? '' : 'none';
+      });
+    }
+
+    desktopSearch.addEventListener('input', handleSearch);
+    mobileSearch.addEventListener('input', handleSearch);
+  </script>
+</body>
+</html>

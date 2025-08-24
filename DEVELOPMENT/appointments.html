@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeCare - Book Appointments</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .header-gradient {
+      background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+    .footer-gradient {
+      background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+    }
+    .header-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .nav-link.active::after {
+      width: 100%;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .mobile-menu {
+      animation: slideDown 0.3s ease-out;
+    }
+    .service-card {
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .confirmation-banner {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="header-gradient text-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo with home link -->
+        <div class="flex items-center">
+          <a href="#" class="text-2xl font-bold flex items-center" id="logo-home">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span>WeCare</span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="Service.html" class="nav-link">Services</a>
+          <a href="Blog.html" class="nav-link">Blog</a>
+          <a href="About Us.html" class="nav-link">About Us</a>
+          <a href="Contact Us.html" class="nav-link">Contact Us</a>
+          <a href="Appointments.html" class="nav-link active">Appointments</a>
+        </nav>
+
+        <!-- Right side elements -->
+        <div class="flex items-center space-x-4">
+          <!-- Language Selector -->
+          <div class="hidden md:block">
+            <select class="bg-transparent text-white border border-white/30 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-white/50">
+              <option class="text-gray-800">EN</option>
+              <option class="text-gray-800">NE</option>
+            </select>
+          </div>
+          
+          <!-- Search -->
+          <div class="hidden md:block relative">
+            <input type="text" id="desktop-search" placeholder="Search services..." class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+           <!-- Auth Buttons -->
+          <div class="hidden md:flex items-center space-x-2">
+            <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
+           <!-- <a href="signup.html" class="px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</a>-->
+          </div>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="lg:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Location and Search for mobile -->
+      <div class="mt-3 md:hidden flex flex-col space-y-2 hidden" id="mobile-search-location">
+        <div class="flex space-x-2">
+          <select class="flex-1 bg-white/10 backdrop-blur-sm border border-white/30 rounded-md px-2 py-1 text-white focus:outline-none">
+            <option class="text-gray-800">Select Location</option>
+          </select>
+          <div class="relative flex-1">
+            <input type="text" id="mobile-search" placeholder="Search services..." class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
+          <button class="flex-1 px-4 py-1 bg-white text-blue-700 rounded-md hover:bg-gray-100 transition-all">Sign up</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-blue-900/95 backdrop-blur-sm px-4 py-3">
+      <div class="flex flex-col space-y-3">
+        <a href="index.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
+        <a href="Service.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
+        <a href="Blog.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Blog</a>
+        <a href="About Us.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">About Us</a>
+        <a href="Contact Us.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="Appointments.html" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">Appointments</a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Location Box -->
+  <div class="flex justify-end mt-3 px-4">
+    <div class="location-box bg-gray-100 rounded-md px-3 py-2 flex items-center">
+      <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+      <select class="bg-transparent text-blue-500 focus:outline-none" id="location-select">
+        <option>Kathmandu, Nepal</option>
+        <option>Lalitpur, Nepal</option>
+        <option>Bhaktapur, Nepal</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Confirmation Banner -->
+    <div id="confirmation-banner" class="confirmation-banner bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
+      <p>Your appointment has been booked successfully! We'll contact you shortly to confirm.</p>
+    </div>
+
+    <h1 class="text-4xl font-bold text-center mb-2">Book an Appointment</h1>
+    <p class="text-center text-gray-600 mb-10">Schedule your service with our verified professionals</p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Service Selection -->
+      <div class="md:col-span-1">
+        <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+          <h2 class="text-2xl font-semibold mb-6">Available Services</h2>
+          <div class="space-y-4" id="service-list">
+            <!-- Services will be dynamically populated -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Appointment Form -->
+      <div class="md:col-span-2">
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <h2 class="text-2xl font-semibold mb-6">Appointment Details</h2>
+          
+          <form id="appointment-form">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-700 mb-2" for="service">Service Type</label>
+                <div class="relative">
+                  <select class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="service" required>
+                    <option value="">Select a service</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 mb-2" for="subservice">Sub-Service</label>
+                <div class="relative">
+                  <select class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="subservice" required>
+                    <option value="">Select a sub-service</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <i class="fas fa-chevron-down"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 mb-2" for="date">Date</label>
+                <input type="date" id="date" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" min="" required>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 mb-2" for="time">Time</label>
+                <div class="relative">
+                  <select class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="time" required>
+                    <option value="">Select a time</option>
+                    <option value="09:00 AM">09:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="01:00 PM">01:00 PM</option>
+                    <option value="02:00 PM">02:00 PM</option>
+                    <option value="03:00 PM">03:00 PM</option>
+                    <option value="04:00 PM">04:00 PM</option>
+                    <option value="05:00 PM">05:00 PM</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 mb-2" for="duration">Duration</label>
+                <div class="relative">
+                  <select class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" id="duration" required>
+                    <option value="">Select duration</option>
+                    <option value="1 hour">1 hour</option>
+                    <option value="2 hours">2 hours</option>
+                    <option value="3 hours">3 hours</option>
+                    <option value="4+ hours">4+ hours (please specify in notes)</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <i class="fas fa-hourglass-half"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-6">
+              <label class="block text-gray-700 mb-2" for="name">Full Name</label>
+              <input type="text" id="name" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your full name" required>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mt-6">
+              <div>
+                <label class="block text-gray-700 mb-2" for="email">Email</label>
+                <input type="email" id="email" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="your.email@example.com" required>
+              </div>
+              
+              <div>
+                <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="+977 9800000000" required>
+              </div>
+            </div>
+            
+            <div class="mt-6">
+              <label class="block text-gray-700 mb-2" for="address">Address</label>
+              <textarea id="address" rows="2" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your complete address" required></textarea>
+            </div>
+            
+            <div class="mt-6">
+              <label class="block text-gray-700 mb-2" for="notes">Additional Notes (Optional)</label>
+              <textarea id="notes" rows="3" class="w-full border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Any special instructions or details about your service needs"></textarea>
+            </div>
+            
+            <div class="mt-8">
+              <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                <i class="fas fa-calendar-check mr-2"></i>
+                Book Appointment
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Appointment Summary -->
+        <div class="bg-white rounded-xl shadow-md p-6 mt-8">
+          <h2 class="text-2xl font-semibold mb-4">Your Appointments</h2>
+          <div id="appointment-list" class="space-y-4">
+            <p class="text-gray-500 text-center py-4" id="no-appointments">You don't have any upcoming appointments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-gradient text-white py-12 mt-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="lg:col-span-1">
+          <div class="flex items-center mb-4">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span class="text-xl font-bold">WeCare</span>
+          </div>
+          <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+            <li><a href="Blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="About Us.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="Contact Us.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="Appointments.html" class="text-gray-300 hover:text-white transition-colors">Appointments</a></li>
+          </ul>
+        </div>
+        
+        <!-- Services -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
+          <ul class="space-y-2">
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+            <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">Kathmandu, Nepal</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">+977 9804297438</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+              <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
+        <div class="flex space-x-4">
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+          <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Service data structure with subservices
+    const servicesData = {
+      plumbing: {
+        title: "Plumbing Services",
+        icon: "fa-faucet",
+        color: "blue",
+        subservices: [
+          { id: "pipe-repair", title: "Pipe Repair & Replacement", price: "₹800 - ₹2500" },
+          { id: "faucet-installation", title: "Faucet Installation", price: "₹500 - ₹1500" },
+          { id: "drain-cleaning", title: "Drain Cleaning", price: "₹600 - ₹2000" },
+          { id: "water-heater", title: "Water Heater Service", price: "₹1000 - ₹4000" }
+        ]
+      },
+      electrician: {
+        title: "Electrical Services",
+        icon: "fa-bolt",
+        color: "yellow",
+        subservices: [
+          { id: "wiring-installation", title: "Wiring Installation", price: "₹1500 - ₹5000" },
+          { id: "lighting-installation", title: "Lighting Installation", price: "₹500 - ₹2000" },
+          { id: "switch-repair", title: "Switch & Socket Repair", price: "₹300 - ₹1000" },
+          { id: "breaker-service", title: "Circuit Breaker Service", price: "₹800 - ₹2500" }
+        ]
+      },
+      technician: {
+        title: "Technician Services",
+        icon: "fa-tools",
+        color: "purple",
+        subservices: [
+          { id: "ac-repair", title: "AC Repair & Service", price: "₹800 - ₹3000" },
+          { id: "tv-repair", title: "TV Repair", price: "₹500 - ₹2500" },
+          { id: "refrigerator-repair", title: "Refrigerator Repair", price: "₹700 - ₹2800" },
+          { id: "washing-machine-repair", title: "Washing Machine Repair", price: "₹600 - ₹2200" }
+        ]
+      },
+      beautician: {
+        title: "Beautician Services",
+        icon: "fa-spa",
+        color: "pink",
+        subservices: [
+          { id: "facial", title: "Professional Facial", price: "₹1000 - ₹3000" },
+          { id: "makeup", title: "Bridal & Party Makeup", price: "₹1500 - ₹5000" },
+          { id: "waxing", title: "Body Waxing", price: "₹500 - ₹2000" },
+          { id: "manicure", title: "Manicure & Pedicure", price: "₹600 - ₹1800" }
+        ]
+      },
+      mechanician: {
+        title: "Mechanic Services",
+        icon: "fa-car",
+        color: "red",
+        subservices: [
+          { id: "oil-change", title: "Oil Change Service", price: "₹800 - ₹2000" },
+          { id: "brake-service", title: "Brake Repair", price: "₹1000 - ₹4000" },
+          { id: "engine-repair", title: "Engine Repair", price: "₹1500 - ₹6000" },
+          { id: "car-service", title: "Periodic Maintenance", price: "₹1200 - ₹3500" }
+        ]
+      },
+      tutor: {
+        title: "Tutoring Services",
+        icon: "fa-book",
+        color: "green",
+        subservices: [
+          { id: "math-tutoring", title: "Mathematics Tutoring", price: "₹400 - ₹1000/hour" },
+          { id: "science-tutoring", title: "Science Tutoring", price: "₹400 - ₹1000/hour" },
+          { id: "language-tutoring", title: "Language Tutoring", price: "₹500 - ₹1200/hour" },
+          { id: "music-lessons", title: "Music Lessons", price: "₹600 - ₹1500/hour" }
+        ]
+      },
+      medical: {
+        title: "Medical Services",
+        icon: "fa-first-aid",
+        color: "teal",
+        subservices: [
+          { id: "doctor-consultation", title: "Doctor Consultation", price: "₹1000 - ₹2000" },
+          { id: "nursing-care", title: "Nursing Care", price: "₹800 - ₹1800/day" },
+          { id: "physiotherapy", title: "Physiotherapy", price: "₹1000 - ₹2500/session" },
+          { id: "elderly-care", title: "Elderly Care", price: "₹1200 - ₹3000/day" }
+        ]
+      },
+      petcare: {
+        title: "Pet Care Services",
+        icon: "fa-paw",
+        color: "indigo",
+        subservices: [
+          { id: "pet-grooming", title: "Pet Grooming", price: "₹800 - ₹2000" },
+          { id: "pet-sitting", title: "Pet Sitting", price: "₹500 - ₹1500/day" },
+          { id: "veterinary-visit", title: "Veterinary Home Visit", price: "₹1000 - ₹2500" },
+          { id: "dog-walking", title: "Dog Walking", price: "₹300 - ₹800/walk" }
+        ]
+      }
+    };
+
+    // DOM Elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileSearchLocation = document.getElementById('mobile-search-location');
+    const serviceList = document.getElementById('service-list');
+    const serviceSelect = document.getElementById('service');
+    const subserviceSelect = document.getElementById('subservice');
+    const appointmentForm = document.getElementById('appointment-form');
+    const appointmentList = document.getElementById('appointment-list');
+    const noAppointments = document.getElementById('no-appointments');
+    const confirmationBanner = document.getElementById('confirmation-banner');
+    const desktopSearch = document.getElementById('desktop-search');
+    const mobileSearch = document.getElementById('mobile-search');
+
+    // Mobile menu functionality
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileSearchLocation) {
+          mobileSearchLocation.classList.toggle('hidden');
+        }
+      });
+    }
+
+    // Set minimum date as today
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+    document.getElementById('date').setAttribute('min', todayStr);
+
+    // Populate services
+    function populateServices(searchTerm = '') {
+      serviceList.innerHTML = '';
+      serviceSelect.innerHTML = '<option value="">Select a service</option>';
+
+      const filteredServices = Object.entries(servicesData).filter(([key, service]) => {
+        if (!searchTerm) return true;
+        const searchLower = searchTerm.toLowerCase();
+        return service.title.toLowerCase().includes(searchLower) ||
+               service.subservices.some(sub => sub.title.toLowerCase().includes(searchLower));
+      });
+
+      filteredServices.forEach(([key, service]) => {
+        // Add to service select
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = service.title;
+        serviceSelect.appendChild(option);
+
+        // Add to service list
+        const card = document.createElement('div');
+        card.className = `service-card bg-${service.color}-50 border border-${service.color}-200 rounded-lg p-4 cursor-pointer`;
+        card.setAttribute('data-service', key);
+        card.innerHTML = `
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-${service.color}-100 rounded-full flex items-center justify-center mr-4">
+              <i class="fas ${service.icon} text-${service.color}-600 text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold">${service.title}</h3>
+              <p class="text-sm text-gray-600">Starting at ${service.subservices[0].price}</p>
+            </div>
+          </div>
+        `;
+        serviceList.appendChild(card);
+      });
+
+      // Add event listeners to service cards
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const service = card.getAttribute('data-service');
+          serviceSelect.value = service;
+          updateSubservices(service);
+          
+          // Update active class
+          serviceCards.forEach(c => c.classList.remove(`bg-${servicesData[c.getAttribute('data-service')].color}-100`, `border-${servicesData[c.getAttribute('data-service')].color}-400`));
+          card.classList.add(`bg-${servicesData[service].color}-100`, `border-${servicesData[service].color}-400`);
+        });
+      });
+
+      // Update subservices if a service is selected
+      if (serviceSelect.value) {
+        updateSubservices(serviceSelect.value);
+      }
+    }
+
+    // Populate subservices based on selected service
+    function updateSubservices(serviceKey, searchTerm = '') {
+      subserviceSelect.innerHTML = '<option value="">Select a sub-service</option>';
+      if (serviceKey && servicesData[serviceKey]) {
+        const filteredSubservices = servicesData[serviceKey].subservices.filter(sub => {
+          if (!searchTerm) return true;
+          return sub.title.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+        
+        filteredSubservices.forEach(sub => {
+          const option = document.createElement('option');
+          option.value = sub.id;
+          option.textContent = `${sub.title} (${sub.price})`;
+          subserviceSelect.appendChild(option);
+        });
+      }
+    }
+
+    // Service select change handler
+    serviceSelect.addEventListener('change', (e) => {
+      const service = e.target.value;
+      updateSubservices(service);
+      
+      // Update active class on service cards
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach(card => {
+        card.classList.remove(`bg-${servicesData[card.getAttribute('data-service')].color}-100`, `border-${servicesData[card.getAttribute('data-service')].color}-400`);
+        if (card.getAttribute('data-service') === service) {
+          card.classList.add(`bg-${servicesData[service].color}-100`, `border-${servicesData[service].color}-400`);
+        }
+      });
+    });
+
+    // Search functionality
+    function handleSearch(e) {
+      const searchTerm = e.target.value;
+      populateServices(searchTerm);
+      
+      // If a service is selected, filter its subservices
+      if (serviceSelect.value) {
+        updateSubservices(serviceSelect.value, searchTerm);
+      }
+    }
+
+    desktopSearch.addEventListener('input', handleSearch);
+    mobileSearch.addEventListener('input', handleSearch);
+
+    // Load appointments
+    function loadAppointments() {
+      const appointments = JSON.parse(localStorage.getItem('wecare-appointments')) || [];
+      
+      if (appointments.length > 0) {
+        noAppointments.style.display = 'none';
+        appointments.forEach(appointment => {
+          addAppointmentToUI(appointment);
+        });
+      }
+    }
+
+    // Save appointment
+    function saveAppointment(appointment) {
+      let appointments = JSON.parse(localStorage.getItem('wecare-appointments')) || [];
+      appointments.push(appointment);
+      localStorage.setItem('wecare-appointments', JSON.stringify(appointments));
+    }
+
+    // Add appointment to UI
+    function addAppointmentToUI(appointment) {
+      noAppointments.style.display = 'none';
+      
+      const appointmentItem = document.createElement('div');
+      appointmentItem.className = 'border rounded-lg p-4';
+      appointmentItem.innerHTML = `
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="font-semibold text-lg">${appointment.serviceTitle || appointment.service}</h3>
+            <p class="text-gray-600">${appointment.subserviceTitle || 'N/A'}</p>
+            <p class="text-gray-600">${formatDate(appointment.date)} at ${appointment.time}</p>
+            <p class="text-gray-600">${appointment.duration}</p>
+            <p class="text-gray-600 mt-2">${appointment.name} • ${appointment.phone}</p>
+            <p class="text-gray-600">${appointment.location}</p>
+            <p class="text-gray-600">Price: ${appointment.price || 'N/A'}</p>
+          </div>
+          <div class="flex items-center">
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">${appointment.status}</span>
+            <button class="ml-2 text-red-500 delete-btn" data-id="${appointment.id}">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      
+      appointmentList.appendChild(appointmentItem);
+      
+      // Add event listener to delete button
+      const deleteBtn = appointmentItem.querySelector('.delete-btn');
+      deleteBtn.addEventListener('click', () => {
+        deleteAppointment(appointment.id);
+        appointmentItem.remove();
+        
+        if (appointmentList.children.length === 1) {
+          noAppointments.style.display = 'block';
+        }
+      });
+    }
+
+    // Delete appointment
+    function deleteAppointment(id) {
+      let appointments = JSON.parse(localStorage.getItem('wecare-appointments')) || [];
+      appointments = appointments.filter(app => app.id !== id);
+      localStorage.setItem('wecare-appointments', JSON.stringify(appointments));
+    }
+
+    // Format date
+    function formatDate(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    // Form submission
+    appointmentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const service = document.getElementById('service').value;
+      const subservice = document.getElementById('subservice').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const duration = document.getElementById('duration').value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const notes = document.getElementById('notes').value;
+      const location = document.getElementById('location-select').value;
+      
+      // Get service and subservice details
+      const serviceData = servicesData[service];
+      const subserviceData = serviceData.subservices.find(sub => sub.id === subservice);
+      
+      const appointment = {
+        id: Date.now(),
+        service,
+        subservice,
+        serviceTitle: serviceData.title,
+        subserviceTitle: subserviceData.title,
+        price: subserviceData.price,
+        date,
+        time,
+        duration,
+        name,
+        email,
+        phone,
+        address,
+        notes,
+        location,
+        status: 'Upcoming'
+      };
+      
+      saveAppointment(appointment);
+      addAppointmentToUI(appointment);
+      
+      confirmationBanner.style.display = 'block';
+      setTimeout(() => {
+        confirmationBanner.style.display = 'none';
+      }, 5000);
+      
+      appointmentForm.reset();
+      subserviceSelect.innerHTML = '<option value="">Select a sub-service</option>';
+      
+      const serviceCards = document.querySelectorAll('.service-card');
+      serviceCards.forEach(card => {
+        card.classList.remove(`bg-${servicesData[card.getAttribute('data-service')].color}-100`, `border-${servicesData[card.getAttribute('data-service')].color}-400`);
+      });
+      
+      // Reset search and services
+      desktopSearch.value = '';
+      mobileSearch.value = '';
+      populateServices();
+    });
+
+    // Initialize
+    populateServices();
+    loadAppointments();
+
+    // Check for service page booking
+    window.addEventListener('load', () => {
+      const pendingBooking = JSON.parse(localStorage.getItem('wecare-pending-booking'));
+      if (pendingBooking) {
+        const { service, subservice, name, email, phone, date, time, address, notes, location } = pendingBooking;
+        
+        // Pre-fill form
+        serviceSelect.value = service;
+        updateSubservices(service);
+        subserviceSelect.value = subservice;
+        document.getElementById('name').value = name;
+        document.getElementById('email').value = email;
+        document.getElementById('phone').value = phone;
+        document.getElementById('date').value = date;
+        document.getElementById('time').value = time;
+        document.getElementById('address').value = address;
+        document.getElementById('notes').value = notes;
+        document.getElementById('location-select').value = location;
+        
+        // Highlight selected service card
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+          if (card.getAttribute('data-service') === service) {
+            card.classList.add(`bg-${servicesData[service].color}-100`, `border-${servicesData[service].color}-400`);
+          }
+        });
+        
+        localStorage.removeItem('wecare-pending-booking');
+      }
+    });
+  </script>
+</body>
+</html>
