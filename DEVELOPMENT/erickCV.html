@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick - CV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Print Button -->
+    <div class="no-print fixed top-4 right-4 z-10">
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg flex items-center">
+            <i class="fas fa-print mr-2"></i> Print CV
+        </button>
+    </div>
+
+    <!-- CV Content -->
+    <div class="page mx-auto bg-white text-gray-800">
+        <!-- Header -->
+        <!-- Header -->
+<header class="mb-6 border-b-2 border-blue-600 pb-4">
+    <h1 class="text-3xl font-bold text-blue-800">ERICK PRADHAN</h1>
+    
+    <div class="flex flex-wrap justify-between mt-2">
+        <!-- Left Side: Email & Phone -->
+        <div class="space-y-1">
+            <p class="flex items-center">
+                <i class="fas fa-envelope text-black mr-2"></i>
+                <a href="mailto:erickpradhan2@gmail.com" class="text-black hover:underline">
+                    erickpradhan2@gmail.com
+                </a>
+            </p>
+            <p class="flex items-center">
+                <i class="fas fa-phone text-black mr-2"></i>
+                <a href="tel:+9779864166934" class="text-black hover:underline">
+                    ‪+977 9864166934‬
+                </a>
+            </p>
+        </div>
+
+        <!-- Right Side: LinkedIn & GitHub -->
+        <div class="space-y-1 text-right">
+            <p class="flex items-center justify-end">
+                <a href="https://www.linkedin.com/in/erick-pradhan-6a879521b" target="_blank" class="text-black hover:underline flex items-center">
+                    <i class="fab fa-linkedin text-black mr-2"></i>
+                    linkedin.com/in/erick-pradhan-6a879521b
+                </a>
+            </p>
+            <p class="flex items-center justify-end">
+                <a href="https://github.com/ErickPradhan" target="_blank" class="text-black hover:underline flex items-center">
+                    <i class="fab fa-github text-black mr-2"></i>
+                    github.com/ErickPradhan
+                </a>
+            </p>
+        </div>
+    </div>
+</header>
+
+        <!-- Summary -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">SUMMARY</h2>
+            <p class="text-justify">I am currently persuing my Bachelor Degree in Artificial Intelligence and Computing and a full-stack developer with experience in e-commerce development and system design. Developed multiple production-grade applications using Java (OOP), Python, and web technologies. AWS-certified professional passionate about building scalable solutions.</p>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">SKILLS</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p><span class="font-semibold">Languages:</span> Java, Python, JavaScript, SQL</p>
+                    <p><span class="font-semibold">Web:</span> HTML, CSS, JavaScript, fast APIs</p>
+                    <p><span class="font-semibold">Frameworks:</span> Spring Boot, Django, React</p>
+                </div>
+                <div>
+                    <p><span class="font-semibold">Cloud:</span> AWS (SageMaker, Lambda, EC2)</p>
+                    <p><span class="font-semibold">Tools:</span> GitHub, Git, Power BI</p>
+                    <p><span class="font-semibold">Databases:</span> MySQL, MongoDB, Xampp</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">EXPERIENCE</h2>
+            
+            <div class="mb-4">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg">E-Commerce Developer</h3>
+                    <span class="text-blue-600 font-medium">2023-Present</span>
+                </div>
+                <p class="text-gray-600 mb-1">Islington College, Kathmandu</p>
+                <ul class="list-disc list-inside ml-4 mt-1">
+                    <li>Developed responsive e-commerce platform using HTML, CSS, and JavaScript</li>
+                    <li>Implemented product inventory system with search and filtering functionality</li>
+                </ul>
+            </div>
+            
+            <div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg">Software Developer (Academic Projects)</h3>
+                    <span class="text-blue-600 font-medium">2022–2023</span>
+                </div>
+                <p class="text-gray-600 mb-1">Islington College, Kathmandu</p>
+                <ul class="list-disc list-inside ml-4 mt-1">
+                    <li>Designed Gym Management System using Java OOP principles</li>
+                    <li>Developed Inventory Management System with Python (Tkinter)</li>
+                    <li>Implemented CRUD operations and database integration for both systems</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">EDUCATION</h2>
+            
+            <div class="mb-4">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg">BSc (Hons) AI & Computing</h3>
+                    <span class="text-blue-600 font-medium">2024-Present</span>
+                </div>
+                <p class="text-gray-600">Islington College, Kathmandu</p>
+            </div>
+            
+            <div class="mb-4">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg">+2 Science</h3>
+                    <span class="text-blue-600 font-medium">2021–2023</span>
+                </div>
+                <p class="text-gray-600">United College, Lalitpur CGPA: 3.45</p>
+            </div>
+            
+            <div>
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg">SEE</h3>
+                    <span class="text-blue-600 font-medium">2020</span>
+                </div>
+                <p class="text-gray-600">Kadambari Academy, Shreepur  GPA: 3.50</p>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">CERTIFICATIONS</h2>
+            <ul class="list-disc list-inside ml-4">
+                <li>AWS Certified: Data Engineering, ML Foundations</li>
+                <li>LinkedIn Learning: Java OOP Certification (2025)</li>
+            </ul>
+        </section>
+
+        <!-- Projects -->
+        <section class="mb-6">
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">PROJECTS</h2>
+            <ul class="list-disc list-inside ml-4">
+                <li><span class="font-semibold">Gym Management System</span> (Java, MySQL) - Full OOP implementation</li>
+                <li><span class="font-semibold">Inventory Management</span> (Python, Tkinter) - With data visualization</li>
+                <li><span class="font-semibold">E-Commerce Platform</span> (HTML, CSS, JS) - College project with payment integration</li>
+            </ul>
+        </section>
+
+        <!-- Additional -->
+        <section>
+            <h2 class="text-xl font-bold text-blue-800 mb-2 border-l-4 border-blue-600 pl-2">ADDITIONAL</h2>
+            <ul class="list-disc list-inside ml-4">
+                <li>English (Fluent)</li>
+                <li>Red Cross Volunteer</li>
+                <li>Two-Wheeler License</li>
+                <li>Immediate Availability</li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

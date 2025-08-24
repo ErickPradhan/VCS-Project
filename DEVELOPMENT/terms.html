@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeCare - Terms & Conditions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fafbfc;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .page-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #edf2f7;
+            padding: 12px 0;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-content a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .breadcrumb-content a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb-content i {
+            font-size: 0.7rem;
+            color: #718096;
+        }
+        
+        /* Page Content Styles */
+        .page-content {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            padding: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .page-content h1 {
+            color: #3b82f6;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 2rem;
+        }
+        
+        .page-content h2 {
+            color: #2d3748;
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .page-content p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        
+        .page-content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .page-content li {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        
+        .highlight-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        
+        .last-updated {
+            background-color: #ebf8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .last-updated i {
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+        
+        /* Print & Download Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .action-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.outline {
+            background-color: transparent;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .action-btn.outline:hover {
+            background-color: #ebf8ff;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2563eb;
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 25px;
+            }
+            
+            .page-content h1 {
+                font-size: 1.7rem;
+            }
+            
+            .page-content h2 {
+                font-size: 1.3rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 30px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .page-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Terms & Conditions</h1>
+            <p>Please read these terms carefully before using our services</p>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Terms & Conditions</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button id="downloadPdf" class="action-btn">
+                <i class="fas fa-download"></i> Download PDF
+            </button>
+            <button class="action-btn outline" onclick="window.print()">
+                <i class="fas fa-print"></i> Print
+            </button>
+        </div>
+        
+        <!-- Terms Content -->
+        <section class="page-content" id="terms-content">
+            <h1>WeCare Terms of Service</h1>
+            
+            <div class="highlight-box">
+                <p><strong>Important:</strong> By accessing or using our website and services, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.</p>
+            </div>
+            
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing this website, you acknowledge that you have read, understood, and agree to be bound by these terms and all applicable laws and regulations. If you do not agree to these terms, please refrain from using our services.</p>
+            
+            <h2>2. Use of Services</h2>
+            <p>All services provided through WeCare are for lawful purposes only. You agree not to misuse, disrupt, or attempt unauthorized access to the website, services, or associated systems. Specifically, you agree not to:</p>
+            <ul>
+                <li>Use our services for any illegal purpose or in violation of any laws</li>
+                <li>Send spam or other unsolicited messages</li>
+                <li>Impersonate another person or entity</li>
+                <li>Interfere with or disrupt the service or servers</li>
+                <li>Attempt to gain unauthorized access to any part of the service</li>
+            </ul>
+            
+            <h2>3. Account Responsibility</h2>
+            <p>If you create an account with WeCare, you are responsible for maintaining the confidentiality of your login information and for all activities that occur under your account. You agree to immediately notify us of any unauthorized use of your account or any other security breaches.</p>
+            
+            <h2>4. Service Availability</h2>
+            <p>WeCare endeavors to provide uninterrupted services but does not guarantee continuous availability. We reserve the right to modify, suspend, or discontinue services at any time without prior notice. We are not liable for any loss or damage resulting from service interruptions.</p>
+            
+            <h2>5. Limitation of Liability</h2>
+            <p>WeCare shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use or inability to use our services. This includes, but is not limited to, damages for loss of profits, data, or other intangible losses.</p>
+            
+            <h2>6. Intellectual Property</h2>
+            <p>All content, logos, and graphics on this website are the property of WeCare and protected by applicable copyright laws. Unauthorized use, reproduction, or distribution of any content is strictly prohibited without prior written consent.</p>
+            
+            <h2>7. Changes to Terms</h2>
+            <p>We reserve the right to update or amend these Terms and Conditions at any time. When we do, we will revise the updated date at the bottom of this page. Continued use of the website after any changes constitutes acceptance of the modified terms.</p>
+            
+            <h2>8. Governing Law</h2>
+            <p>These Terms and Conditions are governed by the laws of Nepal. Any disputes arising shall be subject to the exclusive jurisdiction of the courts in Nepal.</p>
+            
+            <h2>9. Contact Information</h2>
+            <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
+            <ul>
+                <li>Email: legal@wecare.com</li>
+                <li>Phone: +977 980-1234567</li>
+                <li>Address: Madhyapur Thimi, Bhaktapur, Nepal</li>
+            </ul>
+            
+            <div class="last-updated">
+                <i class="fas fa-info-circle"></i>
+                <p><strong>Last updated:</strong> January 15, 2023</p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'flex';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // PDF Download functionality
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            // Create a clone of the content to avoid affecting the original
+            const content = document.getElementById('terms-content');
+            
+            // Create a temporary container for PDF generation
+            const tempContainer = document.createElement('div');
+            tempContainer.style.padding = '20px';
+            tempContainer.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+            tempContainer.style.color = '#4a5568';
+            tempContainer.style.lineHeight = '1.6';
+            
+            // Clone the content
+            const contentClone = content.cloneNode(true);
+            
+            // Add a title for the PDF
+            const title = document.createElement('h1');
+            title.textContent = 'WeCare - Terms & Conditions';
+            title.style.textAlign = 'center';
+            title.style.color = '#3b82f6';
+            title.style.marginBottom = '20px';
+            title.style.paddingBottom = '10px';
+            title.style.borderBottom = '2px solid #e2e8f0';
+            
+            tempContainer.appendChild(title);
+            tempContainer.appendChild(contentClone);
+            
+            // Generate PDF
+            const options = {
+                margin: 10,
+                filename: 'WeCare-Terms-and-Conditions.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(options).from(tempContainer).save();
+        });
+    </script>
+</body>
+</html>
+```
+
+## Key Improvements:
+
+1. **Light Color Theme**: Used a softer color palette with light blues and grays for a professional, clean appearance
+
+2. **PDF Download Functionality**:
+   - Added html2pdf.js library for PDF generation
+   - Created a button that generates and downloads a PDF version of the terms
+   - The PDF includes proper formatting and styling
+
+3. **Home Link Functionality**:
+   - Made the "Home" breadcrumb link functional (points to index.html)
+   - Added hover effects for better user experience
+
+4. **Visual Enhancements**:
+   - Softer shadows and borders
+   - Improved color contrast for better readability
+   - Consistent spacing and typography
+
+5. **Responsive Design**: Maintains proper layout on all device sizes
+
+The page now has a professional light theme, functional PDF download capability, and the home link will redirect users to the website's homepage.

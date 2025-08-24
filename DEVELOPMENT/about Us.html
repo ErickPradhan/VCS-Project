@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Animate on Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .hidden-text { display: none; }
+    
+    /* Custom styles from services page */
+    .header-gradient {
+      background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+    
+    .footer-gradient {
+      background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+    }
+    
+    .header-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    /* Login Modal Styles */
+    .login-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .login-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Mobile menu animation */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .mobile-menu {
+      animation: slideDown 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-content">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-blue-600">Login to WeCare</h2>
+        <button id="closeLogin" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="loginForm">
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" required>
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-gray-700 mb-2" for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your password" required>
+        </div>
+        
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center">
+            <input type="checkbox" id="rememberMe" class="mr-2">
+            <label for="rememberMe" class="text-sm text-gray-600">Remember me</label>
+          </div>
+          <a href="#" class="text-sm text-blue-600 hover:underline">Forgot password?</a>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          Login
+        </button>
+        
+        <div class="text-center mt-4">
+          <p class="text-sm text-gray-600">Don't have an account? 
+            <a href="#" id="showSignup" class="text-blue-600 hover:underline">Sign up</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Enhanced Navbar with Location Box (from Blog page) -->
+  <header class="header-gradient text-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Logo with home link -->
+        <div class="flex items-center">
+          <a href="index.html" class="text-2xl font-bold flex items-center" id="logo-home">
+            <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+            <span>WeCare</span>
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="Service.html" class="nav-link">Services</a>
+          <a href="Blog.html" class="nav-link">Blog</a>
+          <a href="About Us.html" class="nav-link active">About Us</a>
+          <a href="Contact Us.html" class="nav-link">Contact Us</a>
+          <a href="Appointments.html" class="nav-link">Appointment</a>
+        </nav>
+
+        <!-- Right side elements -->
+        <div class="flex items-center space-x-4">
+          <!-- Language Selector -->
+          <div class="hidden md:block">
+            <select class="bg-transparent text-white border border-white/30 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-white/50">
+              <option class="text-gray-800">EN</option>
+              <option class="text-gray-800">NE</option>
+            </select>
+          </div>
+          
+          <!-- Search -->
+          <div class="hidden md:block relative">
+            <input type="text" placeholder="Search" class="bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+          
+          <!-- Auth Buttons - Updated to only show Login -->
+          <div class="hidden md:flex items-center space-x-2">
+            <a href="Login.html" class="px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</a>
+          </div>
+          
+          <!-- User Menu (hidden by default) -->
+          <div id="userMenu" class="hidden items-center">
+            <button id="userIcon" class="flex items-center space-x-2 focus:outline-none bg-white/10 p-1 rounded-full">
+              <i class="fas fa-user-circle text-xl"></i>
+            </button>
+            <div id="dropdownMenu" class="absolute right-4 mt-2 w-48 bg-white border rounded-lg shadow-lg hidden z-10">
+              <p id="welcomeText" class="px-4 py-2 text-gray-700 font-semibold border-b"></p>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition-colors">
+                <i class="fas fa-calendar-check mr-2 text-blue-500"></i>My Bookings
+              </a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100 transition-colors">
+                <i class="fas fa-user-edit mr-2 text-blue-500"></i>My Profile
+              </a>
+              <button id="logoutButton" class="flex items-center w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>Logout
+              </button>
+            </div>
+          </div>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="lg:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Location and Search for mobile -->
+      <div class="mt-3 md:hidden flex flex-col space-y-2 hidden" id="mobile-search-location">
+        <div class="flex space-x-2">
+          <select class="flex-1 bg-white/10 backdrop-blur-sm border border-white/30 rounded-md px-2 py-1 text-white focus:outline-none">
+            <option class="text-gray-800">Select Location</option>
+          </select>
+          <div class="relative flex-1">
+            <input type="text" placeholder="Search" class="w-full bg-white/10 backdrop-blur-sm border border-white/30 rounded-md pl-10 pr-4 py-1 text-white placeholder-white/70 focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-white/70"></i>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button class="flex-1 px-4 py-1 bg-white/10 backdrop-blur-sm rounded-md hover:bg-white/20 transition-all">Login</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-blue-900/95 backdrop-blur-sm px-4 py-3">
+      <div class="flex flex-col space-y-3">
+        <a href="index.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Home</a>
+        <a href="Service.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Services</a>
+        <a href="Blog.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Blog</a>
+        <a href="About Us.html" class="text-white py-2 px-3 rounded-md bg-white/10 transition-all">About Us</a>
+        <a href="Contact Us.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Contact Us</a>
+        <a href="Appointments.html" class="text-white py-2 px-3 rounded-md hover:bg-white/10 transition-all">Appointment</a>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Location Box (right side below header) -->
+  <div class="flex justify-end mt-3 px-4">
+    <div class="location-box bg-gray-100 rounded-md px-3 py-2 flex items-center">
+      <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>
+      <select class="bg-transparent text-blue-500 focus:outline-none">
+        <option>Kathmandu, Nepal</option>
+        <option>Lalitpur, Nepal</option>
+        <option>Bhaktapur, Nepal</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="bg-white py-8 shadow-sm">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-blue-700">About WeCare</h1>
+        <p class="text-center text-gray-600 mt-2 max-w-2xl mx-auto">
+          We are a team of dedicated professionals committed to providing the best home services in Nepal.
+        </p>
+      </div>
+       </div>
+
+    <!-- Team Section -->
+  <section class="px-6 py-10">
+    <div class="max-w-3xl mx-auto space-y-6">
+        <h3 class="text-lg font-bold">Our Team</h3>
+
+      <!-- Erick -->
+      <div class="flex items-start space-x-4">
+        <div class="w-24 flex flex-col items-center">
+          <a href="./ErickCV.html">
+            <img src="./Ericks.jpg" alt="Erick's Portfolio" class="w-20 h-20 object-cover rounded-full">
+          </a>
+          <p class="mt-2 font-semibold">Erick</p>
+        </div>
+        <p class="flex-1 border rounded p-3 bg-white shadow">
+          Erick is responsible for creating the Home Page. He ensures the landing page is attractive, responsive, and user-friendly as well as he operates the whole GitHub merges, conflicts and queries!
+        </p>
+      </div>
+
+      <!-- Bikash -->
+      <div class="flex items-start space-x-4">
+        <div class="w-24 flex flex-col items-center">
+          <a href="./bikashCV.html">
+            <img src="./Bikash.png" alt="Bikash's Portfolio" class="w-20 h-20 object-cover rounded-full">
+          </a>
+          <p class="mt-2 font-semibold">Bikash</p>
+        </div>
+        <p class="flex-1 border rounded p-3 bg-white shadow">
+          Bikash is handling the Blog Page and Services Page. He is making sure both sections are well-structured and functional as well as operating the features/Development branch to ensure that the repository is always up-to-date!
+        </p>
+      </div>
+
+      <!-- Surya -->
+      <div class="flex items-start space-x-4">
+        <div class="w-24 flex flex-col items-center">
+          <a href="./SuryaCV.html">
+            <img src="./surya.jpg" alt="Surya's Portfolio" class="w-20 h-20 object-cover rounded-full">
+          </a>
+          <p class="mt-2 font-semibold">Surya</p>
+        </div>
+        <p class="flex-1 border rounded p-3 bg-white shadow">
+          Surya is working on the Presentation. He focuses on delivering project progress clearly and effectively as well as managing the whole team on delivering the presentation well!
+        </p>
+      </div>
+
+      <!-- Niraj -->
+  <div class="flex items-start space-x-4">
+    <div class="w-24 flex flex-col items-center">
+      <a href="./NirajCV.html">
+        <img src="./Niraj.jpg" alt="Niraj's Portfolio" class="w-20 h-20 object-cover rounded-full">
+      </a>
+      <p class="mt-2 font-semibold">Niraj</p>
+    </div>
+    <p class="flex-1 border rounded p-3 bg-white shadow">
+      Niraj is responsible for Documentation. He keeps detailed project records and ensures everything is properly documented and also operates the ClickUp platform making sure to remind everyone there tasks!
+    </p>
+  </div>
+
+  <!-- MD Rashid -->
+  <div class="flex items-start space-x-4">
+    <div class="w-24 flex flex-col items-center">
+      <a href="./RashidCV.html">
+        <img src="./Rashid.png" alt="MD Rashid's Portfolio" class="w-20 h-20 object-cover rounded-full">
+      </a>
+      <p class="mt-2 font-semibold">MD Rashid</p>
+    </div>
+    <p class="flex-1 border rounded p-3 bg-white shadow">
+      MD Rashid is working on the Services Page, About Us Page, and Login/Sign Up system. He is making smooth navigation and secure authentication as well as operating the features/Development branch to ensure that the repository is always up-to-date!
+    </p>
+  </div>
+
+</div>
+</section>
+
+<!-- Feedback Form -->
+<section class="px-6 py-10">
+<div class="max-w-3xl mx-auto">
+  <h2 class="text-xl font-semibold mb-4">Feedback Form</h2>
+  <form class="border rounded p-6 bg-white shadow">
+    <label class="block mb-2">Full Name:</label>
+    <input type="text" class="w-full border rounded p-2 mb-4" placeholder="Enter Your Name">
+
+    <label class="block mb-2">Phone No.:</label>
+    <input type="tel" class="w-full border rounded p-2 mb-4" placeholder="+977 **********">
+
+    <label class="block mb-2">Email:</label>
+    <input type="email" class="w-full border rounded p-2 mb-4" placeholder="Email">
+
+    <label class="block mb-2">Message:</label>
+    <textarea class="w-full border rounded p-2 mb-4" rows="4" placeholder="Enter your message"></textarea>
+
+    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
+  </form>
+</div>
+</section>
+
+<!-- Enhanced Footer (from Blog page) -->
+<footer class="footer-gradient text-white py-12 mt-16">
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- Company Info -->
+    <div class="lg:col-span-1">
+      <div class="flex items-center mb-4">
+        <span class="bg-white text-blue-700 rounded-full w-10 h-10 flex items-center justify-center mr-2">🏠</span>
+        <span class="text-xl font-bold">WeCare</span>
+      </div>
+      <p class="text-gray-300 mb-4">Your trusted partner for all home services. Quality professionals at your doorstep.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-facebook-f text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-twitter text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-instagram text-lg"></i>
+        </a>
+        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+          <i class="fab fa-linkedin-in text-lg"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Quick Links -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Quick Links</h3>
+      <ul class="space-y-2">
+        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+        <li><a href="Blog.html" class="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+        <li><a href="About Us.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+        <li><a href="Contact Us.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+        <li><a href="Appointments.html" class="text-gray-300 hover:text-white transition-colors">Appointment</a></li>
+      </ul>
+    </div>
+    
+    <!-- Services -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Our Services</h3>
+      <ul class="space-y-2">
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Plumbing</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Electrical</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Technician</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">Beautician</a></li>
+        <li><a href="Service.html" class="text-gray-300 hover:text-white transition-colors">View All</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact Info -->
+    <div>
+      <h3 class="text-lg font-semibold mb-4 relative pb-2 after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-blue-400">Contact Us</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start">
+          <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">Kathmandu, Nepal</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-phone-alt text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">+977 9804297438</span>
+        </li>
+        <li class="flex items-start">
+          <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+          <span class="text-gray-300">bikashrajchaurasiya@gmail.com</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Bottom Bar -->
+  <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 WeCare. All rights reserved.</p>
+    <div class="flex space-x-4">
+      <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+      <a href="policy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+      <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+    </div>
+  </div>
+</div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+// Mobile menu functionality
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileSearchLocation = document.getElementById('mobile-search-location');
+
+if (mobileMenuButton && mobileMenu) {
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    if (mobileSearchLocation) {
+      mobileSearchLocation.classList.toggle('hidden');
+    }
+  });
+}
+
+// Login functionality
+const loginModal = document.getElementById('loginModal');
+const loginButton = document.getElementById('loginButton');
+const closeLogin = document.getElementById('closeLogin');
+const loginForm = document.getElementById('loginForm');
+const userMenu = document.getElementById('userMenu');
+const userIcon = document.getElementById('userIcon');
+const dropdownMenu = document.getElementById('dropdownMenu');
+const welcomeText = document.getElementById('welcomeText');
+const logoutButton = document.getElementById('logoutButton');
+const signupButton = document.getElementById('signupButton');
+const showSignup = document.getElementById('showSignup');
+
+// Open login modal
+if (loginButton) {
+  loginButton.addEventListener('click', () => {
+    loginModal.style.display = 'flex';
+  });
+}
+
+// Close login modal
+if (closeLogin) {
+  closeLogin.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+  });
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+  if (e.target === loginModal) {
+    loginModal.style.display = 'none';
+  }
+});
+
+// Login form submission
+if (loginForm) {
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    
+    // Simulate login
+    localStorage.setItem('user', JSON.stringify({ email, name: email.split('@')[0] }));
+    
+    // Update UI
+    if (loginButton) loginButton.parentElement.classList.add('hidden');
+    userMenu.classList.remove('hidden');
+    welcomeText.textContent = `Hello, ${email.split('@')[0]}`;
+    
+    // Close modal
+    loginModal.style.display = 'none';
+    
+    alert('Login successful!');
+  });
+}
+
+// Toggle user dropdown
+if (userIcon) {
+  userIcon.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
+}
+
+// Logout functionality
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    userMenu.classList.add('hidden');
+    if (loginButton) loginButton.parentElement.classList.remove('hidden');
+    alert('Logged out successfully!');
+  });
+}
+
+// Signup button (redirect to signup page)
+if (signupButton) {
+  signupButton.addEventListener('click', () => {
+    alert('Redirecting to signup page...');
+    // In a real app: window.location.href = 'signup.html';
+  });
+}
+
+if (showSignup) {
+  showSignup.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Redirecting to signup page...');
+    // In a real app: window.location.href = 'signup.html';
+  });
+}
+
+// Check if user is already logged in
+function checkLoginStatus() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    if (loginButton) loginButton.parentElement.classList.add('hidden');
+    userMenu.classList.remove('hidden');
+    welcomeText.textContent = `Hello, ${user.name}`;
+  }
+}
+
+// Feedback form handling
+const feedbackForm = document.querySelector("form");
+if (feedbackForm) {
+  feedbackForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent page reload
+
+    // Collect form data
+    const formData = {
+      name: feedbackForm.querySelector("input[type='text']").value,
+      phone: feedbackForm.querySelector("input[type='tel']").value,
+      email: feedbackForm.querySelector("input[type='email']").value,
+      message: feedbackForm.querySelector("textarea").value,
+      submittedAt: new Date().toLocaleString()
+    };
+
+    // Save to localStorage
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    feedbacks.push(formData);
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+
+    // Show popup message
+    alert("✅ Thank you for your feedback, " + formData.name + "!");
+
+    // Clear form
+    feedbackForm.reset();
+  });
+}
+
+// Initialize page
+checkLoginStatus();
+</script>
+</body>
+</html>
